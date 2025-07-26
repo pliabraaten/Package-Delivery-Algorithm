@@ -11,10 +11,10 @@ class Hashmap:
         hash_bin = self.calculate_hash(key)  # Run calculate_hash method to return the correct bin for this package
         key_value = [key, value]  # Save the id and object in a list: [id, <Package object>]
 
-        if self.package_hashmap[hash_bin] is None:  # Check is anything is in the new package's bin
+        if self.package_hashmap[hash_bin] is None:  # Check if anything is in the new package's bin
             self.package_hashmap[hash_bin] = [key_value]  # Assign list with id and object to the correct bin
 
-        else:  # If collision (ids already exist in the bin)
+        else:  # If bin already has packages
             for pair in self.package_hashmap[hash_bin]:  # Loop through each id/object list already in this bin
                 if pair[0] == key:  # If an existing id equals the new_package.id
                     pair[1] = value  # Update the package object for that id
@@ -36,7 +36,7 @@ class Hashmap:
         hash_bin = self.calculate_hash(key)  # Run calculate_hash method to return the correct bin for this package
 
         if self.package_hashmap[hash_bin] is not None:  # If values exist in this bin
-            for pair in self[hash_bin]:  # Loop through each id/object list in the bin
+            for pair in self.package_hashmap[hash_bin]:  # Loop through each [id, object] pair in this bin
                 if pair[0] == key:  # If the id matches the key being checked
                     return pair[1]  # Return the package object
         return None
@@ -47,3 +47,11 @@ class Hashmap:
         for item in self.package_hashmap:
             if item is not None:
                 print(str(item))
+
+
+
+    # def __str__(self):
+    #     return str(self.package_hashmap)
+    #
+    # def __repr__(self):
+    #     return repr(self.package_hashmap)

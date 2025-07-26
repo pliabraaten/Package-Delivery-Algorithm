@@ -1,17 +1,20 @@
 import package_list
-
 import DistanceData
 import Hashmap
 import PackageData
 
 
+# CSV FILES
 distance_file = 'Package Distance Table.csv'
 package_file = 'Package Delivery Table.csv'
 
-
+# LOAD ADDRESSES
 address_dict, distance_list = DistanceData.load_addresses(distance_file)
 
+# LOAD PACKAGES INTO HASHMAP
 package_hashmap = PackageData.load_packages(package_file)
+
+#
 
 
 # print(address_dict)
@@ -21,10 +24,10 @@ package_hashmap = PackageData.load_packages(package_file)
 # print(distance_list[5][2])
 
 
-address1 = '195 W Oakland Ave'  #5
-address2 = '2300 Parkway Blvd'  #7
-
-distance = DistanceData.get_distance(address1, address2, address_dict, distance_list)
+# address1 = '195 W Oakland Ave'  #5
+# address2 = '2300 Parkway Blvd'  #7
+#
+# distance = DistanceData.get_distance(address1, address2, address_dict, distance_list)
 
 # print(distance)
 
