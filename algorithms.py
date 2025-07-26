@@ -5,32 +5,36 @@ import hashmap
 
 class NearestNeighbor:
 
-    # create delivery function that will take a list of packages on a truck and the start time
-    # find the package in the list that has the address closest to the truck's current location
-    # "move" the truck to that location
-    # "deliver" the package
+    @staticmethod  # Method belongs to class rather than an instance of the class
+    def calculate_next(truck, package_hashmap, address_dict, distance_list):
 
-
-
-
-    @staticmethod
-    def calculate_next(truck1, package_hashmap, address_dict, distance_list):
         # Track the shortest distance
         shortest_dist = None
+        # Track package with the shortest distance
+        next_package = None
 
-        # loop through the list of packages
-        for package in truck1:
-            package_object = package_hashmap.get(package)
-            if shortest_dist is None:
-                shortest_dist = DistanceData.get_distance(package_object.address)
+        for package in truck:  # Loop through the list of packages on truck
 
-        return shortest_dist
+            package_object = package_hashmap.get(package)  # Get package object from hashmap
 
-    # get the distance for each package and current location
-    # track shortest distance as it loops through all of them
+            current_address = '300 State St'  # FIXME
+            address2 = package_object.address  # Grab package address
 
-    # get packakage id, query hashmap to get whole package object, get address string out
-    # query distance dictionary for distance, calculate total distance
+            # Calculate distance between the current address and each package destination
+            distance = distance_data.get_distance(current_address, address2, address_dict, distance_list)
+
+            if shortest_dist is None:  # For first package, set its distance to shortest for comparing
+                shortest_dist = distance
+                next_package = package_object
+            else:
+                if distance < shortest_dist:  # If shortest distance is found, track and set that as next package
+                    shortest_dist = distance
+                    next_package = package_object
+
+        # After looping, return the package_object with the shortest distance
+        return next_package
+
+
 
 
     # MOVE TRUCK

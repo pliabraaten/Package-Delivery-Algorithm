@@ -17,8 +17,11 @@ package_hashmap = package_data.load_packages(package_file)
 
 #
 # Truck with list of packages
-truck1 = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]  # package ids
-# NearestNeighbor.NearestNeighbor.calculate_next(truck1, package_hashmap, address_dict, distance_list)
+truck1 = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]  # package ids
+next_package = algorithms.NearestNeighbor.calculate_next(truck1, package_hashmap, address_dict, distance_list)
+
+print("Next Package: ")
+print(next_package)
 
 # print(address_dict)
 # print(distance_list)
@@ -34,4 +37,4 @@ truck1 = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]  # package ids
 
 # print(distance)
 
-package_hashmap.print_all()
+# package_hashmap.print_all()
