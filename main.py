@@ -28,4 +28,4 @@ distance = DistanceData.get_distance(address1, address2, address_dict, distance_
 
 # print(distance)
 
-package_hashmap.print()
+package_hashmap.print_all()

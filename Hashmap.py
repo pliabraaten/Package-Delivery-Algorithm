@@ -1,46 +1,49 @@
 class Hashmap:
 
-    def __init__(self):
-        # List to hold packages from csv
+    def __init__(self):  # Contructor for Hashmap object
+        # Hashmap to hold packages from csv for quick lookup
         self.package_hashmap = [None] * 10  # Create hashmap with space for 10 buckets (%10)
 
 
-    # Hash the id to calculate the bucket
-    def hash(self, key):
-
-        hash = int(key) % 10
-        return hash
-
-
     # Add new package to hashmap
-    def add(self, key, value):
+    def put(self, key, value):  # key = new_package.id, value = new_package object
 
-        key_hash = self.hash(key)
-        key_value = [key, value]
+        hash_bin = self.calculate_hash(key)  # Run calculate_hash method to return the correct bin for this package
+        key_value = [key, value]  # Save the id and object in a list: [id, <Package object>]
 
-### FIXME
-        if self.package_hashmap[key_hash] is None:  # If no hash already exists in bin
-            self.package_hashmap[key_hash] = [key_value]  # Create a new list and assign key-pair to bucket
-                                                                # Can't Insert into None
-        else:  # Check for collisions
-            for pair in self.package_hashmap[key_hash]:
-                if pair[0] == key:
-                    pair[1] = value
+        if self.package_hashmap[hash_bin] is None:  # Check is anything is in the new package's bin
+            self.package_hashmap[hash_bin] = [key_value]  # Assign list with id and object to the correct bin
+
+        else:  # If collision (ids already exist in the bin)
+            for pair in self.package_hashmap[hash_bin]:  # Loop through each id/object list already in this bin
+                if pair[0] == key:  # If an existing id equals the new_package.id
+                    pair[1] = value  # Update the package object for that id
                     return True
-            self.package_hashmap[key_hash].append(key_value)
+            self.package_hashmap[hash_bin].append(key_value)  # If the id doesn't already exist, add it to the bin
             return True
 
 
+    # Helper function to hash the id to calculate the bucket for each package based on its ID
+    def calculate_hash(self, package_id):
+
+        hash_bin = int(package_id) % 10  # Hash function
+        return hash_bin  # Return the correct bin for this package
+
+
+    # Function to retrieve the value from the key
     def get(self, key):
-        key_hash = self.hash(key)
-        if self[key_hash] is not None:
-            for pair in self[key_hash]:
-                if pair[0] == key:
-                    return pair[1]
+
+        hash_bin = self.calculate_hash(key)  # Run calculate_hash method to return the correct bin for this package
+
+        if self.package_hashmap[hash_bin] is not None:  # If values exist in this bin
+            for pair in self[hash_bin]:  # Loop through each id/object list in the bin
+                if pair[0] == key:  # If the id matches the key being checked
+                    return pair[1]  # Return the package object
         return None
 
 
-    def print(self):
+    # Print entire hashmap
+    def print_all(self):
         for item in self.package_hashmap:
             if item is not None:
                 print(str(item))

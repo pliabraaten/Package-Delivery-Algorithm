@@ -20,8 +20,7 @@ def load_packages(file_path):
                 new_package = Package.Package(*row) # Instantiate a new package object; *row unpacks all the values as arguments
 
                 # HASH and ADD NEW PACKAGE
-                hash = package_hashmap.hash(new_package.id)
-                package_hashmap.add(new_package.id, new_package)
+                package_hashmap.put(new_package.id, new_package)
 
 
     return package_hashmap
