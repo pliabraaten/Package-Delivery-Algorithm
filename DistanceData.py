@@ -26,8 +26,14 @@ with open(file_path) as csv_file:
                 distance_list.append(row)  # Add distance values in list of list
                 index += 1  # Move to next index for this address
 
-print(address_dict)
-print(distance_list)
 
-print(address_dict['195 W Oakland Ave'])
-print(distance_list[5][2])
+# Function for calculating distance between two address
+def get_distance(address1, address2):
+        address_index1 = address_dict[address1]
+        address_index2 = address_dict[address2]
+
+        # Ensure first index in lookup is larger due to bottom triangle table
+        if address_index1 < address_index2:
+                return distance_list[address_index2][address_index1]
+        else:
+                return distance_list[address_index1][address_index2]
