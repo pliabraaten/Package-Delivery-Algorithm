@@ -1,6 +1,7 @@
 import package_list
 import DistanceData
 import Hashmap
+import NearestNeighbor
 import PackageData
 
 
@@ -15,7 +16,9 @@ address_dict, distance_list = DistanceData.load_addresses(distance_file)
 package_hashmap = PackageData.load_packages(package_file)
 
 #
-
+# Truck with list of packages
+truck1 = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]  # package ids
+NearestNeighbor.NearestNeighbor.calculate_next(truck1, package_hashmap, address_dict, distance_list)
 
 # print(address_dict)
 # print(distance_list)
