@@ -1,6 +1,6 @@
 # There is a direct connection between every location
-import DistanceData
-import Hashmap
+import distance_data
+import hashmap
 
 
 class NearestNeighbor:
