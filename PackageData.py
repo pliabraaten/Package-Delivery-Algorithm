@@ -1,26 +1,24 @@
 import csv
+
+import Hashmap
 import Package
-
-
 
 
 # Function to load the package list
 def load_packages(file_path):
 
-    # List to hold packages from csv
-    package_list = []
-
-    index = 0
-
     # Read csv as list of rows
-    with open(file_path) as csv_file:
+    with open(file_path, 'r', encoding='utf-8-sig') as csv_file:  # encoding removes the BOM artifacts from the file
             csv_reader = csv.reader(csv_file, delimiter=',')
 
-            # Hash each package into hash map
+            # Pull package row data into the package list
             for row in csv_reader:
 
-                    package = row.pop(0)  # Pop package from the beginning of each row
+                new_package = Package.Package(*row) # Instantiate a new package object; *row unpacks all the values as arguments
 
-                    #package_list.append(Package(package))  # Add distance values in list of list
+                # HASH and ADD NEW PACKAGE
+                hashmap = HashMap  # Instantiate package hashmap
+                hashmap.HashMap.add(hashmap, new_package.id, new_package)
 
-    return package_list
+
+    return

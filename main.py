@@ -1,6 +1,7 @@
 import package_list
 
 import DistanceData
+import Hashmap
 import PackageData
 
 
@@ -13,11 +14,11 @@ address_dict, distance_list = DistanceData.load_addresses(distance_file)
 package_list = PackageData.load_packages(package_file)
 
 
-print(address_dict)
-print(distance_list)
-
-print(address_dict['195 W Oakland Ave'])
-print(distance_list[5][2])
+# print(address_dict)
+# print(distance_list)
+#
+# print(address_dict['195 W Oakland Ave'])
+# print(distance_list[5][2])
 
 
 
@@ -27,9 +28,12 @@ address2 = '2300 Parkway Blvd'  #7
 
 distance = DistanceData.get_distance(address1, address2, address_dict, distance_list)
 
-print(distance)
+# print(distance)
+
+print(package_list)
+
+# for p in package_list:
+#     print(p)
 
 
-
-for p in package_list:
-    print(p)
+HashMap.print()
