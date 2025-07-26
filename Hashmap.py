@@ -2,11 +2,11 @@ class Hashmap:
 
     def __init__(self):
         # List to hold packages from csv
-        package_hashmap = [None] * 10  # Create hashmap with space for 10 buckets (%10)
+        self.package_hashmap = [None] * 10  # Create hashmap with space for 10 buckets (%10)
 
 
     # Hash the id to calculate the bucket
-    def hash(key):
+    def hash(self, key):
 
         hash = int(key) % 10
         return hash
@@ -19,15 +19,15 @@ class Hashmap:
         key_value = [key, value]
 
 ### FIXME
-        if self[key_hash] is None:  # If no hash already exists in bin
-            self.insert  # Insert new package object into the hashmap
-
+        if self.package_hashmap[key_hash] is None:  # If no hash already exists in bin
+            self.package_hashmap[key_hash] = [key_value]  # Create a new list and assign key-pair to bucket
+                                                                # Can't Insert into None
         else:  # Check for collisions
-            for pair in self.map[key_hash]:
+            for pair in self.package_hashmap[key_hash]:
                 if pair[0] == key:
                     pair[1] = value
                     return True
-            self[key_hash].append(key_value)
+            self.package_hashmap[key_hash].append(key_value)
             return True
 
 
@@ -41,6 +41,6 @@ class Hashmap:
 
 
     def print(self):
-        for item in self:
+        for item in self.package_hashmap:
             if item is not None:
                 print(str(item))
