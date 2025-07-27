@@ -2,17 +2,26 @@ from datetime import timedelta
 
 import algorithms
 import distance_data
-import hashmap
 
 
 class Truck:
 
-    def __init__(self, truck1_packages, start_address, start_time):
-        self.packages = truck1_packages
+    def __init__(self, truck_packages, start_address, start_time):
+        self.packages = truck_packages
         self.current_address = start_address
         self.time = start_time
         self.mileage = 0.0  # Miles by specific truck
         self.delivered_count = 0  # Count of packages delivered
+
+
+    def status_en_route(self, package_hashmap):
+
+        # Loop through all package ids in the truck
+        for id in self.packages:
+            package = package_hashmap.get(id)  # Retrieve package object
+            package.delivery_status = "En route"  # Update delivery_status
+
+        return True
 
 
     def deliver_packages(self, package_hashmap, address_dict, distance_list):
@@ -31,7 +40,7 @@ class Truck:
             self.move_truck(next_package, distance, drive_time)
 
             # DELIVER PACKAGE
-            self.deliver_package(next_package, distance)
+            self.drop_package(next_package, distance)
 
             # print("Delivery: ")
             # print("Current time: " + str(self.time))
@@ -69,7 +78,7 @@ class Truck:
         self.mileage += distance
 
 
-    def deliver_package(self, next_package, distance):
+    def drop_package(self, next_package, distance):
 
         # Timestamp package as delivered
         next_package.delivery_status = self.time
