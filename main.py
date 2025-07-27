@@ -5,26 +5,9 @@
 
 import userInterface
 
-
-
-# ## TODO: keep?
-# # OVERALL MILEAGE TRACKER
-# total_mileage = 0
-#
-# ## TODO: keep?
-# # OVERALL PACKAGES DELIVERED
-# delivered_count = 0
-
-
-
-# CLI
+# START CLI
 UI = userInterface.CLI()  # Instantiate the UI
 userInterface.CLI.menu(UI)  # Run the UI
-
-
-
-
-
 
 
 
@@ -40,20 +23,6 @@ userInterface.CLI.menu(UI)  # Run the UI
 # # START TRUCK 3 AFTER ANOTHER TRUCK RETURNS
 # truck3.deliver_packages(package_hashmap, address_dict, distance_list)
 
-
-
-
-
-
-
-
-
-
-
-
-# Print total mileage
-delivered_count = truck1.delivered_count + truck2.delivered_count + truck3.delivered_count
-total_mileage = round(truck1.mileage + truck2.mileage + truck3.mileage, 2)
 
 
 

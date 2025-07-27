@@ -1,7 +1,6 @@
 import datetime
-
 import config
-import truckFleet
+import fleetOperations
 
 
 class CLI:
@@ -20,7 +19,7 @@ class CLI:
         if action == "1":
 
             stop_time = None
-            truck1, truck2 = truckFleet.Fleet.run_package_delivery(stop_time)
+            truck1, truck2 = fleetOperations.Fleet.run_package_delivery(stop_time)
 
             total_mileage = truck1.mileage + truck2.mileage #+ truck3.mileage
 
@@ -34,7 +33,7 @@ class CLI:
         if action == "2":
 
             stop_time = None
-            truckFleet.Fleet.run_package_delivery(stop_time)
+            fleetOperations.Fleet.run_package_delivery(stop_time)
 
             config.package_hashmap.print_all()
 
@@ -43,7 +42,7 @@ class CLI:
         if action == "3":
 
             stop_time = None
-            truckFleet.Fleet.run_package_delivery(stop_time)
+            fleetOperations.Fleet.run_package_delivery(stop_time)
 
             id = int(input("Enter package id: "))
             config.package_hashmap.print_package(id)
@@ -52,10 +51,12 @@ class CLI:
         # Enter 4 to query delivery status at a specific time
         if action == "4":
 
-            input_time = input("Enter time: ")
-            input_time = datetime.strptime(input_time, '%H:%M').time()  # Format input into time
-            stop_time = datetime.combine(datetime.today(), input_time)  # Add today's date
+            input_time = input("Enter time in HHMM format: ")
+            input_time = datetime.datetime.strptime(input_time, '%H%M').time()  # Format input into time
+            stop_time = datetime.datetime.combine(datetime.datetime.today(), input_time)  # Add today's date
 
-            truckFleet.Fleet.run_package_delivery(stop_time)
+            # print(stop_time)
+
+            fleetOperations.Fleet.run_package_delivery(stop_time)
 
             return

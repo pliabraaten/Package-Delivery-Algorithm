@@ -24,11 +24,12 @@ class Truck:
         return True
 
 
-    def deliver_packages(self, package_hashmap, address_dict, distance_list):
+    def deliver_packages(self, package_hashmap, address_dict, distance_list, stop_time):
 
         counter = 0  # Track number of packages delivered
 
-        while len(self.packages) > 0:  # While there are still packages in the truck
+        #  Stop truck deliveries at a specific time if one was entered OR when truck is empty
+        while self.time < stop_time and len(self.packages) > 0:
 
             # DETERMINE NEXT PACKAGE
             next_package, distance, drive_time = self.pick_package(package_hashmap, address_dict, distance_list)
