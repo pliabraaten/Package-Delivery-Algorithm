@@ -50,9 +50,10 @@ class Hashmap:
 
     # Print entire hashmap
     def print_all(self):
-        for item in self.package_hashmap:
-            if item is not None:
-                print(str(item))
+        for bin in self.package_hashmap:  # Loop through the bins
+            if bin is not None:  # Skip if bin is empty
+                for key, value in bin:  # For each key_value pair in the bin
+                    print(value)  # Print the package object
 
 
 

@@ -1,10 +1,9 @@
 from datetime import datetime, timedelta
-import package_list
 import distance_data
 import hashmap
-import algorithms
 import package_data
 import truck
+
 
 # CSV FILES
 distance_file = 'Package Distance Table.csv'
@@ -70,7 +69,18 @@ print("Truck 1 mileage: " + str(truck1.mileage))
 print("Truck 2 mileage: " + str(truck2.mileage))
 print("Truck 3 mileage: " + str(truck3.mileage))
 
-print(package_hashmap)
+
+
+package_hashmap.print_all()
+
+
+# # loop through packages and check if deadline was met
+# for bucket in hash_map.package_hashmap:
+#     if bucket:
+#         for package in bucket:
+#             # Now you can check values
+#             if package.deadline != 'EOD':
+#                     print(package)
 
 
 

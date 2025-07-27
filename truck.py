@@ -2,6 +2,7 @@ from datetime import timedelta
 
 import algorithms
 import distance_data
+import hashmap
 
 
 class Truck:
