@@ -48,6 +48,13 @@ class Hashmap:
         return None
 
 
+    # Print one package object
+    def print_package(self, key):
+
+        package = self.get(key)
+        print(package)
+
+
     # Print entire hashmap
     def print_all(self):
         for bin in self.package_hashmap:  # Loop through the bins

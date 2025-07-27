@@ -82,11 +82,6 @@ print("Truck 3 mileage: " + str(truck3.mileage))
 
 
 package_hashmap.print_all()
+package_hashmap.print_late()
 
-# package_hashmap.print_late()
-
-
-
-
-
-
+package_hashmap.print_package(34)
