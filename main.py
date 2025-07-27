@@ -2,11 +2,11 @@
 # Student ID: 012461945
 
 
-from datetime import datetime, timedelta
+from datetime import datetime
 import distance_data
-import hashmap
 import package_data
 import truck
+import userInterface
 
 
 # CSV FILES
@@ -26,9 +26,11 @@ start_address = '4001 South 700 East'
 today = datetime.today()
 start_time = datetime(today.year, today.month, today.day, 8, 0, 0)
 
+## TODO: keep?
 # OVERALL MILEAGE TRACKER
 total_mileage = 0
 
+## TODO: keep?
 # OVERALL PACKAGES DELIVERED
 delivered_count = 0
 
@@ -63,25 +65,27 @@ truck3.deliver_packages(package_hashmap, address_dict, distance_list)
 
 
 
+# CLI
+UI = userInterface.CLI()
+userInterface.CLI.menu(UI, truck1, truck2, truck3, package_hashmap)
 
-truck1.mileage = round(truck1.mileage, 2)
-truck2.mileage = round(truck2.mileage, 2)
-truck3.mileage = round(truck3.mileage, 2)
+
+
+
+
 
 # Print total mileage
 delivered_count = truck1.delivered_count + truck2.delivered_count + truck3.delivered_count
 total_mileage = round(truck1.mileage + truck2.mileage + truck3.mileage, 2)
 
-print("Delivered packages: " + str(delivered_count))
-print("Total Miles: " + str(total_mileage))
-print("Truck 1 mileage: " + str(truck1.mileage))
-print("Truck 2 mileage: " + str(truck2.mileage))
-print("Truck 3 mileage: " + str(truck3.mileage))
 
 
 
+# print("Delivered packages: " + str(delivered_count))
+#
 
-package_hashmap.print_all()
-package_hashmap.print_late()
-
-package_hashmap.print_package(34)
+#
+# package_hashmap.print_all()
+# package_hashmap.print_late()
+#
+# package_hashmap.print_package(34)

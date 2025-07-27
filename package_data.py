@@ -22,7 +22,8 @@ def load_packages(file_path):
 
                 # If package has delivery deadline, convert it to datetime
                 if new_package.deadline != 'EOD':
-                    new_package.deadline = datetime.strptime(new_package.deadline, '%H:%M').today()
+                    deadline_time = datetime.strptime(new_package.deadline, '%H:%M').time()  # Format into time
+                    new_package.deadline = datetime.combine(datetime.today(), deadline_time)  # Add today's date
 
                 # HASH and ADD NEW PACKAGE
                 package_hashmap.put(new_package.id, new_package)
