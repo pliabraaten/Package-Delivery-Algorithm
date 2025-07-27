@@ -14,6 +14,7 @@ class CLI:
         print("Enter 2 to query all packages after delivery")
         print("Enter 3 to lookup a package after delivery")
         print("Enter 4 to query delivery status at a specific time")
+        print("Enter 0 to exit program")
         print("--")
         action = input("Enter your option: ")
 
@@ -89,4 +90,11 @@ class CLI:
             # Return to menu options
             self.menu()
 
+            return
+
+
+
+
+        #Enter 0 to exit program
+        if action == "0":
             return
