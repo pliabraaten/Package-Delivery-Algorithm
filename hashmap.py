@@ -72,8 +72,3 @@ class Hashmap:
                             print(str(value.id) + " : " + str(value.deadline.strftime('%H:%M')) + " : " + str(value.delivery_time.strftime('%H:%M')))  # Print the package object
 
 
-    # def __str__(self):
-    #     return str(self.package_hashmap)
-    #
-    # def __repr__(self):
-    #     return repr(self.package_hashmap)
