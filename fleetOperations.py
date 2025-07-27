@@ -26,6 +26,7 @@ class Fleet:
         # Load truck with packages
         truck1_packages = [1, 2, 4, 13, 14, 15, 16, 19, 20, 21, 27, 33, 34, 35, 39, 40]  # package ids
         truck2_packages = [3, 5, 7, 8, 9, 10, 11, 12, 18, 23, 24, 29, 30, 36, 37, 38]
+
         # Instantiate a truck packages
         truck1 = truck.Truck(truck1_packages, start_address, start_time)
         truck2 = truck.Truck(truck2_packages, start_address, start_time)
@@ -46,9 +47,8 @@ class Fleet:
             stop_time = datetime.datetime.combine(datetime.datetime.today(), day_end)
 
         # DELIVER PACKAGES
-        truck1.deliver_packages(package_hashmap, address_dict, distance_list, stop_time)
-        truck2.deliver_packages(package_hashmap, address_dict, distance_list, stop_time)
-
+        truck1.counter = truck1.deliver_packages(package_hashmap, address_dict, distance_list, stop_time)
+        truck2.counter = truck2.deliver_packages(package_hashmap, address_dict, distance_list, stop_time)
 
         # TRUCK RETURNS
         returned_time = truck1.return_truck(address_dict, distance_list, start_address)

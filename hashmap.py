@@ -63,12 +63,22 @@ class Hashmap:
                     print(value)  # Print the package object
 
 
+    def print_delivered(self):
+        for bin in self.package_hashmap:  # Loop through the bins
+            if bin is not None:  # Skip if bin is empty
+                for id, package in bin:  # For each key_value pair in the bin (id, <package>)
+                    if package.delivery_status == "Delivered":  # Only print if package has been delivered
+                        # Print the package object
+                        print(package)
+
+
     def print_late(self):
         for bin in self.package_hashmap:  # Loop through the bins
             if bin is not None:  # Skip if bin is empty
-                for key, value in bin:  # For each key_value pair in the bin
-                    if value.deadline != 'EOD':  # Only print if package has a deadline
-                        if value.deadline > value.delivery_time:
-                            print(str(value.id) + " : " + str(value.deadline.strftime('%H:%M')) + " : " + str(value.delivery_time.strftime('%H:%M')))  # Print the package object
+                for id, package in bin:  # For each key_value pair in the bin (id, <package>)
+                    if package.deadline != 'EOD':  # Only print if package has a deadline
+                        if package.deadline > package.delivery_time:
+                            # FIXME: Only prints some attributes for testing - Print the whole package object?
+                            print(str(package.id) + " : " + str(package.deadline.strftime('%H:%M')) + " : " + str(package.delivery_time.strftime('%H:%M')))
 
 

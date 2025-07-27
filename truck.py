@@ -54,6 +54,8 @@ class Truck:
 
         # print("Counter: " + str(counter))
 
+        return counter
+
 
     def pick_package(self, package_hashmap, address_dict, distance_list):
 
