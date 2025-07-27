@@ -12,11 +12,10 @@ class Package:
         self.weight = weight
         self.notes = notes
 
-        self.loading_time = None  #TODO: delete or rename
         self.delivery_time = None
 
     def __str__(self):
-        return f'Package({self.id},{self.address},{self.city},{self.state},{self.zip},{self.deadline},{self.weight},{self.notes},{self.loading_time},{self.delivery_time})'
+        return f'Package({self.id},{self.address},{self.city},{self.state},{self.zip},{self.deadline},{self.weight},{self.notes},{self.delivery_time})'
 
     def __repr__(self):
-        return f'Package({self.id},{self.address},{self.city},{self.state},{self.zip},{self.deadline},{self.weight},{self.notes},{self.loading_time},{self.delivery_time})'
+        return f'Package({self.id},{self.address},{self.city},{self.state},{self.zip},{self.deadline},{self.weight},{self.notes},{self.delivery_time})'

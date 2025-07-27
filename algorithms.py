@@ -36,8 +36,8 @@ class NearestNeighbor:
     def calculate_time(distance):
 
         speed = 18  # Trucks have average speed of 18 miles per hour
-        loading_time = distance / speed * 60  # Minutes
+        drive_time = distance / speed * 60  # Minutes
 
-        return loading_time
+        return drive_time
 
 

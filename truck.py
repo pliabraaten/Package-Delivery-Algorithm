@@ -21,13 +21,13 @@ class Truck:
         while len(self.packages) > 0:  # While there are still packages in the truck
 
             # DETERMINE NEXT PACKAGE
-            next_package, distance = self.pick_package(package_hashmap, address_dict, distance_list)
+            next_package, distance, drive_time = self.pick_package(package_hashmap, address_dict, distance_list)
 
             # print("Next package: ")
             # print(next_package)
 
             # MOVE TRUCK
-            self.move_truck(next_package, distance)
+            self.move_truck(next_package, distance, drive_time)
 
             # DELIVER PACKAGE
             self.deliver_package(next_package, distance)
@@ -50,16 +50,16 @@ class Truck:
         next_package, distance = algorithms.NearestNeighbor.calculate_next(self, self.current_address, package_hashmap,
                                                                            address_dict, distance_list)
 
-        # Update the next package object's loading time
-        next_package.loading_time = algorithms.NearestNeighbor.calculate_time(distance)
+        # Calculate the time to the next package
+        drive_time = algorithms.NearestNeighbor.calculate_time(distance)
 
-        return next_package, distance
+        return next_package, distance, drive_time
 
 
-    def move_truck(self, next_package, distance):
+    def move_truck(self, next_package, distance, drive_time):
 
         # Update time after driving to the next package address
-        self.time += timedelta(0, 0,0,0, next_package.loading_time, 0)
+        self.time += timedelta(0, 0,0,0, drive_time, 0)
 
         # Update current location
         self.current_address = next_package.address
