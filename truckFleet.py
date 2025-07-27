@@ -1,19 +1,24 @@
+import config
 import truck
+
 
 
 class Fleet:
 
-
+    @staticmethod
     def run_package_delivery(self, stop_time):
 
         # LOAD TRUCKS
-        truck1, truck2 = Fleet.load_trucks(main.start_address, main.start_time)
+        truck1, truck2 = Fleet.load_trucks(config.start_address, config.start_time)
 
         # RUN TRUCKS
-        Fleet.run_trucks(truck1, truck2, main.package_hashmap, main.address_dict, main.distance_list,
-                         main.start_address, stop_time)
+        Fleet.run_trucks(truck1, truck2, config.package_hashmap, config.address_dict, config.distance_list,
+                         config.start_address, stop_time)
+
+        return truck1, truck2
 
 
+    @staticmethod
     def load_trucks(self, start_address, start_time):
 
         # Load truck with packages
