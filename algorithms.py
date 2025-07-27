@@ -1,12 +1,10 @@
-# There is a direct connection between every location
 import distance_data
-import hashmap
 
 
 class NearestNeighbor:
 
     @staticmethod  # Method belongs to class rather than an instance of the class
-    def calculate_next(truck, package_hashmap, address_dict, distance_list):
+    def calculate_next(truck, current_address, package_hashmap, address_dict, distance_list):
 
         # Track the shortest distance
         shortest_dist = None
@@ -17,11 +15,10 @@ class NearestNeighbor:
 
             package_object = package_hashmap.get(package)  # Get package object from hashmap
 
-            current_address = '300 State St'  # FIXME
-            address2 = package_object.address  # Grab package address
+            package_address = package_object.address  # Grab package address
 
             # Calculate distance between the current address and each package destination
-            distance = distance_data.get_distance(current_address, address2, address_dict, distance_list)
+            distance = distance_data.get_distance(current_address, package_address, address_dict, distance_list)
 
             if shortest_dist is None:  # For first package, set its distance to shortest for comparing
                 shortest_dist = distance
@@ -31,10 +28,20 @@ class NearestNeighbor:
                     shortest_dist = distance
                     next_package = package_object
 
+        # After looping, update the next package object's loading time
+        next_package.loading_time = NearestNeighbor.calculate_time(distance)
+
         # After looping, return the package_object with the shortest distance
         return next_package
 
 
+    @staticmethod
+    def calculate_time(distance):
+
+        speed = 18  # Trucks have average speed of 18 miles per hour
+        loading_time = distance / speed * 60  # Minutes
+
+        return loading_time
 
 
     # MOVE TRUCK
