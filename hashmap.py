@@ -61,8 +61,8 @@ class Hashmap:
             if bin is not None:  # Skip if bin is empty
                 for key, value in bin:  # For each key_value pair in the bin
                     if value.deadline != 'EOD':  # Only print if package has a deadline
-                        if value.deadline > value.delivery_time:
-                            print(str(value.id) + " : " + str(value.deadline.strftime('%H:%M')) + " : " + str(value.delivery_time.strftime('%H:%M')))  # Print the package object
+                        if value.deadline > value.delivery_status:
+                            print(str(value.id) + " : " + str(value.deadline.strftime('%H:%M')) + " : " + str(value.delivery_status.strftime('%H:%M')))  # Print the package object
 
 
     # def __str__(self):
