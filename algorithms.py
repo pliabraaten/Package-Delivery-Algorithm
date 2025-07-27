@@ -11,7 +11,7 @@ class NearestNeighbor:
         # Track package with the shortest distance
         next_package = None
 
-        for package in truck:  # Loop through the list of packages on truck
+        for package in truck.packages:  # Loop through the list of packages on truck
 
             package_object = package_hashmap.get(package)  # Get package object from hashmap
 
@@ -28,11 +28,8 @@ class NearestNeighbor:
                     shortest_dist = distance
                     next_package = package_object
 
-        # After looping, update the next package object's loading time
-        next_package.loading_time = NearestNeighbor.calculate_time(distance)
-
         # After looping, return the package_object with the shortest distance
-        return next_package
+        return next_package, distance
 
 
     @staticmethod
@@ -43,14 +40,5 @@ class NearestNeighbor:
 
         return loading_time
 
-
-    # MOVE TRUCK
-    # calculate time based on distance moved
-    # add time to current datetime object
-    # change the truck's current location variable
-
-    # Deliver the package
-    # timestamp the packagea
-    # pop the package id off the list
 
 

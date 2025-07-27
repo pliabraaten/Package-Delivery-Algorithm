@@ -4,7 +4,7 @@ import distance_data
 import hashmap
 import algorithms
 import package_data
-
+import truck
 
 # CSV FILES
 distance_file = 'Package Distance Table.csv'
@@ -16,50 +16,31 @@ address_dict, distance_list = distance_data.load_addresses(distance_file)
 # LOAD PACKAGES INTO HASHMAP
 package_hashmap = package_data.load_packages(package_file)
 
-# print(address_dict)
-# print(distance_list)
-# package_hashmap.print_all()
+# START LOCATION
+start_address = 'HUB'
 
-
-##########
-# Truck with list of packages
-truck1 = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]  # package ids
-
-# Current Location
-current_address = 'HUB'  # FIXME
-
-print("Start address: " + current_address)
-
-# Start Time
+# START TIME
 today = datetime.today()
-time = datetime(today.year, today.month, today.day, 8, 0, 0)
+start_time = datetime(today.year, today.month, today.day, 8, 0, 0)
 
-# Determine next package to deliver; return that package object and the distance to its delivery address
-next_package = algorithms.NearestNeighbor.calculate_next(truck1, current_address, package_hashmap, address_dict, distance_list)
+# OVERALL MILEAGE TRACKER
+total_mileage = 0
 
-print("Next Package: ")
-print(next_package)
+# START TRUCKS
+# Load truck with packages
+truck1_packages = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]  # package ids  ##FIXME
+# Instantiate a truck packages
+truck1 = truck.Truck(truck1_packages, start_address, start_time)
 
-# MOVE TRUCK
-# Update time to the next package address
-time += timedelta(0,next_package.loading_time,0)
+# START TRUCKS
+# Deliver Packages for Truck1
+truck1.deliver_packages(package_hashmap, address_dict, distance_list)
 
-# Update current location
-current_address = next_package.address
 
-# Timestamp package as delivered
-next_package.delivery_time = time
 
-print("Next address: " + current_address)
-print(next_package.loading_time)
-print(next_package.delivery_time)
-print(time)
-print(current_address)
-
-# Remove package from the truck
-truck1.remove(next_package.id)
-
-print(truck1)
+# Print total mileage
+total_mileage = truck1.mileage
+print("Total Miles: " + str(total_mileage))
 
 
 
