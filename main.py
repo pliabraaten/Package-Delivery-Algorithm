@@ -26,6 +26,9 @@ start_time = datetime(today.year, today.month, today.day, 8, 0, 0)
 # OVERALL MILEAGE TRACKER
 total_mileage = 0
 
+# OVERALL PACKAGES DELIVERED
+delivered_count = 0
+
 # START TRUCKS
 # Load truck with packages
 truck1_packages = [1, 2, 4, 13, 14, 15, 16, 19, 20, 21, 27, 33, 34, 35, 39, 40]  # package ids
@@ -53,9 +56,21 @@ truck3 = truck.Truck(truck3_packages, start_address, returned_time)
 truck3.deliver_packages(package_hashmap, address_dict, distance_list)
 
 
+truck1.mileage = round(truck1.mileage, 2)
+truck2.mileage = round(truck2.mileage, 2)
+truck3.mileage = round(truck3.mileage, 2)
+
 # Print total mileage
+delivered_count = truck1.delivered_count + truck2.delivered_count + truck3.delivered_count
 total_mileage = round(truck1.mileage + truck2.mileage + truck3.mileage, 2)
+
+print("Delivered packages: " + str(delivered_count))
 print("Total Miles: " + str(total_mileage))
+print("Truck 1 mileage: " + str(truck1.mileage))
+print("Truck 2 mileage: " + str(truck2.mileage))
+print("Truck 3 mileage: " + str(truck3.mileage))
+
+print(package_hashmap)
 
 
 

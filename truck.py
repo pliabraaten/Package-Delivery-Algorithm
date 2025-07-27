@@ -11,6 +11,7 @@ class Truck:
         self.current_address = start_address
         self.time = start_time
         self.mileage = 0.0  # Miles by specific truck
+        self.delivered_count = 0  # Count of packages delivered
 
 
     def deliver_packages(self, package_hashmap, address_dict, distance_list):
@@ -74,6 +75,9 @@ class Truck:
 
         # Remove package from the truck
         self.packages.remove(next_package.id)
+
+        # Increment count of delivered packages
+        self.delivered_count += 1
 
 
     def return_truck(self, address_dict, distance_list, start_address):
