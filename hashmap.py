@@ -4,6 +4,12 @@ class Hashmap:
         # Hashmap to hold packages from csv for quick lookup
         self.package_hashmap = [None] * 10  # Create hashmap with space for 10 buckets (%10)
 
+    def __str__(self):
+        return f'Package({self.package_hashmap})'
+
+    def __repr__(self):
+        return f'Package({self.package_hashmap})'
+
 
     # Add new package to hashmap
     def put(self, key, value):  # key = new_package.id, value = new_package object
