@@ -18,16 +18,10 @@ class Truck:
 
         while len(self.packages) > 0:  # While there are still packages in the truck
 
-            print("Before: ")
-            print(self.time)
-            print(self.current_address)
-            print(self.mileage)
-            print(self.packages)
-
             # DETERMINE NEXT PACKAGE
             next_package, distance = self.pick_package(package_hashmap, address_dict, distance_list)
 
-            print("next package: ")
+            print("Next package: ")
             print(next_package)
 
             # MOVE TRUCK
@@ -36,10 +30,11 @@ class Truck:
             # DELIVER PACKAGE
             self.deliver_package(next_package, distance)
 
-            print("After: ")
-            print(self.time)
-            print(self.current_address)
-            print(self.mileage)
+            print("Delivery: ")
+            print("Current time: " + str(self.time))
+            print("Current location: " + self.current_address)
+            print("Truck's milelage: " + str(self.mileage))
+            print("Packages still on truck: ")
             print(self.packages)
 
             counter += 1

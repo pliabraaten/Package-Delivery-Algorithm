@@ -28,18 +28,26 @@ total_mileage = 0
 
 # START TRUCKS
 # Load truck with packages
-truck1_packages = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]  # package ids  ##FIXME
+truck1_packages = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16]  # package ids
+truck2_packages = [17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30 , 31, 32]
+truck3_packages = [32, 33, 34, 35, 36, 37, 38, 39, 40]
+
 # Instantiate a truck packages
 truck1 = truck.Truck(truck1_packages, start_address, start_time)
+truck2 = truck.Truck(truck2_packages, start_address, start_time)
+# truck3 = truck.Truck(truck3_packages, start_address, start_time)
 
-# START TRUCKS
-# Deliver Packages for Truck1
+
+# START TRUCKS AND DELIVER PACKAGES
 truck1.deliver_packages(package_hashmap, address_dict, distance_list)
+truck2.deliver_packages(package_hashmap, address_dict, distance_list)
 
+# START TRUCK 3 AFTER ANOTHER TRUCK RETURNS
+# truck3.deliver_packages(package_hashmap, address_dict, distance_list)
 
 
 # Print total mileage
-total_mileage = truck1.mileage
+total_mileage = truck1.mileage + truck2.mileage #+ truck3.mileage
 print("Total Miles: " + str(total_mileage))
 
 
