@@ -10,7 +10,7 @@ class CLI:
         print("\n----------------------------------------------------")
         print("This is the command-line interface")
         print("----------------------------------------------------")
-        print("Enter 1 see total mileage of trucks")
+        print("Enter 1 see total mileage of trucks after delivery")
         print("Enter 2 to query all packages after delivery")
         print("Enter 3 to lookup a package after delivery")
         print("Enter 4 to query delivery status at a specific time")
@@ -19,7 +19,7 @@ class CLI:
         action = input("Enter your option: ")
 
 
-        # Enter 1 see total mileage of trucks
+        # Enter 1 see total mileage of trucks after delivery
         if action == "1":
 
             stop_time = None
