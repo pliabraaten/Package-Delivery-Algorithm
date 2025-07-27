@@ -5,9 +5,7 @@
 from datetime import datetime
 import distance_data
 import package_data
-import truck
 import userInterface
-
 
 # CSV FILES
 distance_file = 'Package Distance Table.csv'
@@ -34,42 +32,36 @@ total_mileage = 0
 # OVERALL PACKAGES DELIVERED
 delivered_count = 0
 
-# START TRUCKS
-# Load truck with packages
-truck1_packages = [1, 2, 4, 13, 14, 15, 16, 19, 20, 21, 27, 33, 34, 35, 39, 40]  # package ids
-truck2_packages = [3, 5, 7, 8, 9, 10, 11, 12, 18, 23, 24, 29, 30, 36, 37, 38]
-# Instantiate a truck packages
-truck1 = truck.Truck(truck1_packages, start_address, start_time)
-truck2 = truck.Truck(truck2_packages, start_address, start_time)
-# Update delivery status for packages to en route
-truck.Truck.status_en_route(truck1, package_hashmap)
-truck.Truck.status_en_route(truck2, package_hashmap)
-
-# DELIVER PACKAGES
-truck1.deliver_packages(package_hashmap, address_dict, distance_list)
-truck2.deliver_packages(package_hashmap, address_dict, distance_list)
-
-# TRUCK RETURNS
-returned_time = truck1.return_truck(address_dict, distance_list, start_address)
-
-# TRUCK 3
-# Load truck 3
-truck3_packages = [6, 17, 22, 25, 26, 28, 31, 32]
-#Instantiate truck 3
-truck3 = truck.Truck(truck3_packages, start_address, returned_time)
-# Update delivery status for packages to en route
-truck.Truck.status_en_route(truck3, package_hashmap)
-
-# START TRUCK 3 AFTER ANOTHER TRUCK RETURNS
-truck3.deliver_packages(package_hashmap, address_dict, distance_list)
-
-
-
 
 
 # CLI
-UI = userInterface.CLI()
-userInterface.CLI.menu(UI, truck1, truck2, truck3, package_hashmap)
+UI = userInterface.CLI()  # Instantiate the UI
+userInterface.CLI.menu(UI, package_hashmap)  # Run the UI
+
+
+
+
+
+
+
+
+## FIXME
+# # TRUCK 3
+# # Load truck 3
+# truck3_packages = [6, 17, 22, 25, 26, 28, 31, 32]
+# #Instantiate truck 3
+# truck3 = truck.Truck(truck3_packages, start_address, returned_time)
+# # Update delivery status for packages to en route
+# truck.Truck.status_en_route(truck3, package_hashmap)
+#
+# # START TRUCK 3 AFTER ANOTHER TRUCK RETURNS
+# truck3.deliver_packages(package_hashmap, address_dict, distance_list)
+
+
+
+
+
+
 
 
 
