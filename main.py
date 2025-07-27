@@ -28,8 +28,8 @@ total_mileage = 0
 
 # START TRUCKS
 # Load truck with packages
-truck1_packages = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16]  # package ids
-truck2_packages = [17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30 , 31, 32]
+truck1_packages = [1, 2, 4, 13, 14, 15, 16, 19, 20, 21, 27, 33, 34, 35, 39, 40]  # package ids
+truck2_packages = [3, 5, 7, 8, 9, 10, 11, 12, 18, 23, 24, 29, 30, 36, 37, 38]
 
 # Instantiate a truck packages
 truck1 = truck.Truck(truck1_packages, start_address, start_time)
@@ -44,7 +44,7 @@ returned_time = truck1.return_truck(address_dict, distance_list, start_address)
 
 # TRUCK 3
 # Load truck 3
-truck3_packages = [32, 33, 34, 35, 36, 37, 38, 39, 40]
+truck3_packages = [6, 17, 22, 25, 26, 28, 31, 32]
 
 #Instantiate truck 3
 truck3 = truck.Truck(truck3_packages, start_address, returned_time)
