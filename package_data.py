@@ -22,5 +22,4 @@ def load_packages(file_path):
                 # HASH and ADD NEW PACKAGE
                 package_hashmap.put(new_package.id, new_package)
 
-
     return package_hashmap

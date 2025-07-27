@@ -12,7 +12,7 @@ class Package:
         self.weight = weight
         self.notes = notes
 
-        self.loading_time = None
+        self.loading_time = None  #TODO: delete or rename
         self.delivery_time = None
 
     def __str__(self):

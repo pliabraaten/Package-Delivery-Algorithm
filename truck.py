@@ -1,6 +1,7 @@
 from datetime import timedelta
 
 import algorithms
+import distance_data
 
 
 class Truck:
@@ -21,8 +22,8 @@ class Truck:
             # DETERMINE NEXT PACKAGE
             next_package, distance = self.pick_package(package_hashmap, address_dict, distance_list)
 
-            print("Next package: ")
-            print(next_package)
+            # print("Next package: ")
+            # print(next_package)
 
             # MOVE TRUCK
             self.move_truck(next_package, distance)
@@ -30,16 +31,16 @@ class Truck:
             # DELIVER PACKAGE
             self.deliver_package(next_package, distance)
 
-            print("Delivery: ")
-            print("Current time: " + str(self.time))
-            print("Current location: " + self.current_address)
-            print("Truck's milelage: " + str(self.mileage))
-            print("Packages still on truck: ")
-            print(self.packages)
+            # print("Delivery: ")
+            # print("Current time: " + str(self.time))
+            # print("Current location: " + self.current_address)
+            # print("Truck's milelage: " + str(self.mileage))
+            # print("Packages still on truck: ")
+            # print(self.packages)
 
             counter += 1
 
-        print("Counter: " + str(counter))
+        # print("Counter: " + str(counter))
 
 
     def pick_package(self, package_hashmap, address_dict, distance_list):
@@ -57,7 +58,7 @@ class Truck:
     def move_truck(self, next_package, distance):
 
         # Update time after driving to the next package address
-        self.time += timedelta(0, next_package.loading_time, 0)
+        self.time += timedelta(0, 0,0,0, next_package.loading_time, 0)
 
         # Update current location
         self.current_address = next_package.address
@@ -74,4 +75,30 @@ class Truck:
         # Remove package from the truck
         self.packages.remove(next_package.id)
 
+
+    def return_truck(self, address_dict, distance_list, start_address):
+
+        # print("Miles before returning: " + str(self.mileage))
+
+        # Calculate distance from last package location back to HUB
+        distance = distance_data.get_distance(self.current_address, start_address, address_dict, distance_list)
+
+        # Calculate time back to HUB
+        return_time = algorithms.NearestNeighbor.calculate_time(distance)
+
+        # Update time after driving to the next package address
+        self.time += timedelta(0, 0,0,0, return_time, 0)
+
+        # Update current location
+        self.current_address = start_address
+
+        # Update truck's mileage
+        self.mileage += distance
+
+        # print("------------------------------------------------------------------------")
+        # print("Distance to return: " + str(distance))
+        # print("Miles after returning: " + str(self.mileage))
+        # print("Ending time: " + str(self.time))
+
+        return self.time
 
