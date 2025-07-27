@@ -81,7 +81,8 @@ class Truck:
     def drop_package(self, next_package, distance):
 
         # Timestamp package as delivered
-        next_package.delivery_status = self.time
+        next_package.delivery_status = "Delivered"
+        next_package.delivery_time = self.time
 
         # Remove package from the truck
         self.packages.remove(next_package.id)

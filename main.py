@@ -80,16 +80,13 @@ print("Truck 3 mileage: " + str(truck3.mileage))
 
 
 
-package_hashmap.print_late()
+
+package_hashmap.print_all()
+
+# package_hashmap.print_late()
 
 
-# # loop through packages and check if deadline was met
-# for bucket in hash_map.package_hashmap:
-#     if bucket:
-#         for package in bucket:
-#             # Now you can check values
-#             if package.deadline != 'EOD':
-#                     print(package)
+
 
 
 
