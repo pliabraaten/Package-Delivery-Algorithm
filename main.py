@@ -54,7 +54,7 @@ truck3.deliver_packages(package_hashmap, address_dict, distance_list)
 
 
 # Print total mileage
-total_mileage = truck1.mileage + truck2.mileage #+ truck3.mileage
+total_mileage = round(truck1.mileage + truck2.mileage + truck3.mileage, 2)
 print("Total Miles: " + str(total_mileage))
 
 
