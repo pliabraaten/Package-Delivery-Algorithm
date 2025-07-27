@@ -1,4 +1,5 @@
 import csv
+from datetime import datetime
 
 import hashmap
 import package
@@ -18,6 +19,10 @@ def load_packages(file_path):
             for row in csv_reader:
 
                 new_package = package.Package(*row) # Instantiate a new package object; *row unpacks all the values as arguments
+
+                # If package has delivery deadline, convert it to datetime
+                if new_package.deadline != 'EOD':
+                    new_package.deadline = datetime.strptime(new_package.deadline, '%H:%M').today()
 
                 # HASH and ADD NEW PACKAGE
                 package_hashmap.put(new_package.id, new_package)
