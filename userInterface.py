@@ -102,7 +102,7 @@ class CLI:
             config.package_hashmap.print_truck(truck2.original_package_list)
             print("------------------------\n")
             print("Truck 3: ")
-            print("Total packages delivered: " + str(truck2.delivered_count))
+            print("Total packages delivered: " + str(truck3.delivered_count))
             print("--")
             config.package_hashmap.print_truck(truck3.original_package_list)
             print("------------------------")

@@ -6,7 +6,8 @@ import distance_data
 
 class Truck:
 
-    def __init__(self, truck_packages, start_address, start_time):
+    def __init__(self, truck_packages, start_address, start_time, name):
+        self.name = name
         self.original_package_list = truck_packages.copy()
         self.packages = truck_packages.copy()
         self.current_address = start_address
@@ -32,11 +33,12 @@ class Truck:
         #  Stop truck deliveries at a specific time if one was entered OR when truck is empty
         while self.time < stop_time and len(self.packages) > 0:
 
+            # UPDATE STATUS FOR TRUCK 3 PACKAGES
+            if self.name == "truck3":
+                self.status_en_route(package_hashmap)
+
             # DETERMINE NEXT PACKAGE
             next_package, distance, drive_time = self.pick_package(package_hashmap, address_dict, distance_list)
-
-            # print("Next package: ")
-            # print(next_package)
 
             # MOVE TRUCK
             self.move_truck(next_package, distance, drive_time)

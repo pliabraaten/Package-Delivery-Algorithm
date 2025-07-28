@@ -1,3 +1,6 @@
+import itertools
+from itertools import combinations
+
 import distance_data
 
 
@@ -41,3 +44,11 @@ class NearestNeighbor:
         return drive_time
 
 
+    @staticmethod
+    def calculate_combinations(iterable, r):
+
+        combinations = itertools.combinations(iterable, r)
+
+        return combinations
+
+    #https://docs.python.org/3/library/itertools.html#itertools.combinations

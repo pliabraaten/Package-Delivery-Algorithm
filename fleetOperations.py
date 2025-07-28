@@ -13,6 +13,7 @@ class Fleet:
         truck1, truck2 = Fleet.load_trucks(config.start_address, config.start_time)
 
         # RUN TRUCKS
+        ## FIXME: DON'T NEED TO RETURN COUNTER, TRUCK OBJECT HAS DELIVERED_COUNT ATTRIBUTE ALREADY
         t1_time_returned = Fleet.run_trucks(truck1, truck2, config.package_hashmap, config.address_dict, config.distance_list, config.start_address, stop_time)
 
         # LOAD AND RUN 3RD TRUCK
@@ -25,12 +26,12 @@ class Fleet:
     def load_trucks(start_address, start_time):
 
         # Load truck with packages
-        truck1_packages = [1, 2, 4, 13, 14, 15, 16, 19, 20, 21, 27, 33, 34, 35, 39, 40]  # package ids
-        truck2_packages = [3, 5, 7, 8, 9, 10, 11, 12, 18, 23, 24, 29, 30, 36, 37, 38]
+        truck1_packages = [19, 13, 20, 14, 15, 16]  # package ids
+        truck2_packages = [18, 36, 3, 5, 37, 38]
 
         # Instantiate a truck packages
-        truck1 = truck.Truck(truck1_packages, start_address, start_time)
-        truck2 = truck.Truck(truck2_packages, start_address, start_time)
+        truck1 = truck.Truck(truck1_packages, start_address, start_time, name="truck1")
+        truck2 = truck.Truck(truck2_packages, start_address, start_time, name="truck2")
 
         return truck1, truck2
 
@@ -61,13 +62,10 @@ class Fleet:
     def run_3rd_truck(t1_time_returned, stop_time):
 
         # LOAD
-        truck3_packages = [6, 17, 22, 25, 26, 28, 31, 32]
+        truck3_packages = [28, 9, 6, 32, 25]
 
         # INSTANTIATE and SET TRUCK 3'S START TIME TO TRUCK 1'S ENDTIME
-        truck3 = truck.Truck(truck3_packages, config.start_address, t1_time_returned)
-
-        # UPDATE PACKAGE STATUS
-        truck.Truck.status_en_route(truck3, config.package_hashmap)
+        truck3 = truck.Truck(truck3_packages, config.start_address, t1_time_returned, name="truck3")
 
         # If user didn't enter a specific time to check, set stop time to the last sec of the day
         if stop_time is None:

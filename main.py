@@ -1,23 +1,32 @@
 # Parker LiaBraaten
 # Student ID: 012461945
+import itertools
 
+import algorithms
 
 import userInterface
+from config import package_hashmap
+
+# pool = range(1,41)  # 1 through 40
+# r = 40  # Combinations of size 40
+#
+# # combinations = algorithms.combinations(pool, r)
+#
+# combinations = itertools.combinations(pool, r)
+
+
+
+
+# print(list(combinations))
+
+
 
 # START CLI
 UI = userInterface.CLI()  # Instantiate the UI
 userInterface.CLI.menu(UI)  # Run the UI
 
 
+# print late packages
 
-## FIXME
-# # TRUCK 3
-# # Load truck 3
+package_hashmap.print_late()
 
-# #Instantiate truck 3
-# truck3 = truck.Truck(truck3_packages, start_address, returned_time)
-# # Update delivery status for packages to en route
-# truck.Truck.status_en_route(truck3, package_hashmap)
-#
-# # START TRUCK 3 AFTER ANOTHER TRUCK RETURNS
-# truck3.deliver_packages(package_hashmap, address_dict, distance_list)
