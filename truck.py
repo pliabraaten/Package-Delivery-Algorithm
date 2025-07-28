@@ -44,16 +44,7 @@ class Truck:
             # DELIVER PACKAGE
             self.drop_package(next_package, distance)
 
-            # print("Delivery: ")
-            # print("Current time: " + str(self.time))
-            # print("Current location: " + self.current_address)
-            # print("Truck's milelage: " + str(self.mileage))
-            # print("Packages still on truck: ")
-            # print(self.packages)
-
             counter += 1
-
-        # print("Counter: " + str(counter))
 
         return counter
 
@@ -97,8 +88,6 @@ class Truck:
 
     def return_truck(self, address_dict, distance_list, start_address):
 
-        # print("Miles before returning: " + str(self.mileage))
-
         # Calculate distance from last package location back to HUB
         distance = distance_data.get_distance(self.current_address, start_address, address_dict, distance_list)
 
@@ -113,11 +102,6 @@ class Truck:
 
         # Update truck's mileage
         self.mileage += distance
-
-        # print("------------------------------------------------------------------------")
-        # print("Distance to return: " + str(distance))
-        # print("Miles after returning: " + str(self.mileage))
-        # print("Ending time: " + str(self.time))
 
         return self.time
 

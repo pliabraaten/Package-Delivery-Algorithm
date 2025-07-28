@@ -46,6 +46,7 @@ class CLI:
 
             print("\n----------------------------------------------------")
             print("RESULT:")
+            print("All packages:")
             config.package_hashmap.print_all()
 
             # Return to menu options
@@ -62,6 +63,7 @@ class CLI:
 
             print("\n----------------------------------------------------")
             print("RESULT:")
+            print("Package id: " + str(id))
             config.package_hashmap.print_package(id)
 
             # Return to menu options
