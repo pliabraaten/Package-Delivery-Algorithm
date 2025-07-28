@@ -1,3 +1,5 @@
+
+
 class Hashmap:
 
     def __init__(self):  # Contructor for Hashmap object
@@ -63,13 +65,14 @@ class Hashmap:
                     print(value)  # Print the package object
 
 
-    def print_delivered(self):
+    # Print original list of packages on truck and their status
+    def print_truck(self, truck_packages):
         for bin in self.package_hashmap:  # Loop through the bins
             if bin is not None:  # Skip if bin is empty
                 for id, package in bin:  # For each key_value pair in the bin (id, <package>)
-                    if package.delivery_status == "Delivered":  # Only print if package has been delivered
-                        # Print the package object
-                        print(package)
+                    # Only print packages on the truck that have been delivered
+                    if id in truck_packages:
+                        print(package)  # Print object
 
 
     def print_late(self):

@@ -13,7 +13,7 @@ class CLI:
         print("Enter 1 see total mileage of trucks after delivery")
         print("Enter 2 to query all packages after delivery")
         print("Enter 3 to lookup a package after delivery")
-        print("Enter 4 to query delivery status at a specific time")
+        print("Enter 4 to query packages at a specific time")
         print("Enter 0 to exit program")
         print("--")
         action = input("Enter your option: ")
@@ -68,24 +68,37 @@ class CLI:
             self.menu()
 
 
-        # Enter 4 to query delivery status at a specific time
+        # Enter 4 to query packages at a specific time
         if action == "4":
 
+            # Obtain stop time from user
             input_time = input("Enter time in HHMM format: ")
             input_time = datetime.datetime.strptime(input_time, '%H%M').time()  # Format input into time
             stop_time = datetime.datetime.combine(datetime.datetime.today(), input_time)  # Add today's date
 
-            # print(stop_time)
-
+            # Run trucks until that time
             truck1, truck2 = fleetOperations.Fleet.run_package_delivery(stop_time)
 
+
+            print("\n----------------------------------------------------")
+            print("RESULT:")
             print("Truck 1 delivered " + str(truck1.counter) + " packages")
             print("Truck 2 delivered " + str(truck2.counter) + " packages")
-
-            # config.package_hashmap.print_all()
-
-            print("Delivered packages: ")
-            config.package_hashmap.print_delivered()
+            print("\n-- Packages by Truck --")
+            print("------------------------")
+            print("Truck 1:")
+            print("Total packages delivered: " + str(truck1.delivered_count))
+            print("--")
+            config.package_hashmap.print_truck(truck1.original_package_list)
+            print("------------------------\n")
+            print("Truck 2:")
+            print("Total packages delivered: " + str(truck2.delivered_count))
+            print("--")
+            config.package_hashmap.print_truck(truck2.original_package_list)
+            print("------------------------\n")
+            # print("Truck 3: ")
+            # config.package_hashmap.print_truck(truck3.original_package_list)
+            # print("--\n")
 
             # Return to menu options
             self.menu()

@@ -7,7 +7,8 @@ import distance_data
 class Truck:
 
     def __init__(self, truck_packages, start_address, start_time):
-        self.packages = truck_packages
+        self.original_package_list = truck_packages.copy()
+        self.packages = truck_packages.copy()
         self.current_address = start_address
         self.time = start_time
         self.mileage = 0.0  # Miles by specific truck
