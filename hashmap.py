@@ -66,13 +66,20 @@ class Hashmap:
 
 
     # Print original list of packages on truck and their status
-    def print_truck(self, truck_packages):
-        for bin in self.package_hashmap:  # Loop through the bins
-            if bin is not None:  # Skip if bin is empty
-                for id, package in bin:  # For each key_value pair in the bin (id, <package>)
-                    # Only print packages on the truck that have been delivered
-                    if id in truck_packages:
-                        print(package)  # Print object
+    def print_truck(self, original_package_list):
+
+        packages_list = []  # Create list for holding package objects
+        for id in original_package_list:  # Loop through the truck's initial package load
+            package = self.get(id)
+            if package is not None:
+                packages_list.append(package)  # Add packages to this list
+
+        # Sort list by delivery_time
+        packages_list.sort(key=lambda x: x.delivery_time)
+
+        # Print each package one at a time:
+        for package in packages_list:
+            print(package)
 
 
     def print_late(self):
@@ -80,7 +87,7 @@ class Hashmap:
             if bin is not None:  # Skip if bin is empty
                 for id, package in bin:  # For each key_value pair in the bin (id, <package>)
                     if package.deadline != 'EOD' and package.delivery_time is not None:  # Only print if package has a deadline
-                        if package.deadline > package.delivery_time:
+                        if package.deadline < package.delivery_time:
                             # FIXME: Only prints some attributes for testing - Print the whole package object?
                             print(str(package.id) + " : " + str(package.deadline.strftime('%H:%M')) + " : " + str(package.delivery_time.strftime('%H:%M')))
 

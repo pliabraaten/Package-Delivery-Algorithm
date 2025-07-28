@@ -34,6 +34,10 @@ class CLI:
             print("Truck 2 mileage: " + str(round(truck2.mileage, 2)))
             print("Truck 3 mileage: " + str(round(truck3.mileage, 2)))
 
+            # FIXME: delete
+            print("\n")
+            config.package_hashmap.print_late()
+
             # Return to menu options
             self.menu()
 
@@ -106,6 +110,10 @@ class CLI:
             print("--")
             config.package_hashmap.print_truck(truck3.original_package_list)
             print("------------------------")
+
+            # FIXME: delete
+            print("\n")
+            config.package_hashmap.print_late()
 
             # Return to menu options
             self.menu()

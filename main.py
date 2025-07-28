@@ -28,5 +28,5 @@ userInterface.CLI.menu(UI)  # Run the UI
 
 # print late packages
 
-package_hashmap.print_late()
+
 

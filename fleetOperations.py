@@ -26,8 +26,12 @@ class Fleet:
     def load_trucks(start_address, start_time):
 
         # Load truck with packages
-        truck1_packages = [19, 13, 20, 14, 15, 16]  # package ids
-        truck2_packages = [18, 36, 3, 5, 37, 38]
+
+        # truck1_packages = [1, 13, 14, 15, 16, 19, 20, 30, 31, 34, 37, 40]
+        # truck2_packages = [3, 6, 12, 22, 24, 25, 26, 27, 28, 29, 32, 35, 36, 38, 39]
+
+        truck1_packages = [27, 35, 19, 13, 39, 17, 31, 20, 21, 4, 40, 14, 15, 16, 34, 24]  # package ids
+        truck2_packages = [7, 29, 18, 1, 36, 3, 2, 33, 11, 8, 9, 30, 5, 37, 38, 10]
 
         # Instantiate a truck packages
         truck1 = truck.Truck(truck1_packages, start_address, start_time, name="truck1")
@@ -62,7 +66,8 @@ class Fleet:
     def run_3rd_truck(t1_time_returned, stop_time):
 
         # LOAD
-        truck3_packages = [28, 9, 6, 32, 25]
+        # truck3_packages = [2, 4, 5, 7, 8, 9, 10, 11, 17, 18, 21, 23, 33]
+        truck3_packages = [28, 6, 32, 12, 23, 25, 26, 22]
 
         # INSTANTIATE and SET TRUCK 3'S START TIME TO TRUCK 1'S ENDTIME
         truck3 = truck.Truck(truck3_packages, config.start_address, t1_time_returned, name="truck3")
