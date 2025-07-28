@@ -13,10 +13,12 @@ class Fleet:
         truck1, truck2 = Fleet.load_trucks(config.start_address, config.start_time)
 
         # RUN TRUCKS
-        Fleet.run_trucks(truck1, truck2, config.package_hashmap, config.address_dict, config.distance_list,
-                         config.start_address, stop_time)
+        t1_time_returned = Fleet.run_trucks(truck1, truck2, config.package_hashmap, config.address_dict, config.distance_list, config.start_address, stop_time)
 
-        return truck1, truck2
+        # LOAD AND RUN 3RD TRUCK
+        truck3 = Fleet.run_3rd_truck(t1_time_returned, stop_time)
+
+        return truck1, truck2, truck3
 
 
     @staticmethod
@@ -49,7 +51,30 @@ class Fleet:
         truck1.counter = truck1.deliver_packages(package_hashmap, address_dict, distance_list, stop_time)
         truck2.counter = truck2.deliver_packages(package_hashmap, address_dict, distance_list, stop_time)
 
-        # TRUCK RETURNS
-        returned_time = truck1.return_truck(address_dict, distance_list, start_address)
+        # TRUCK 1 RETURNS
+        t1_time_returned = truck1.return_truck(address_dict, distance_list, start_address)
 
-        return
+        return t1_time_returned
+
+
+    @staticmethod
+    def run_3rd_truck(t1_time_returned, stop_time):
+
+        # LOAD
+        truck3_packages = [6, 17, 22, 25, 26, 28, 31, 32]
+
+        # INSTANTIATE and SET TRUCK 3'S START TIME TO TRUCK 1'S ENDTIME
+        truck3 = truck.Truck(truck3_packages, config.start_address, t1_time_returned)
+
+        # UPDATE PACKAGE STATUS
+        truck.Truck.status_en_route(truck3, config.package_hashmap)
+
+        # If user didn't enter a specific time to check, set stop time to the last sec of the day
+        if stop_time is None:
+            day_end = datetime.datetime.strptime('235959', '%H%M%S').time()
+            stop_time = datetime.datetime.combine(datetime.datetime.today(), day_end)
+
+        # DELIVER PACKAGES
+        truck3.counter = truck3.deliver_packages(config.package_hashmap, config.address_dict, config.distance_list, stop_time)
+
+        return truck3

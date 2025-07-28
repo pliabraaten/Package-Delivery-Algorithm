@@ -12,7 +12,7 @@ class CLI:
         print("----------------------------------------------------")
         print("Enter 1 see total mileage of trucks after delivery")
         print("Enter 2 to query all packages after delivery")
-        print("Enter 3 to lookup a package after delivery")
+        print("Enter 3 to look up a package after delivery")
         print("Enter 4 to query packages at a specific time")
         print("Enter 0 to exit program")
         print("--")
@@ -23,7 +23,7 @@ class CLI:
         if action == "1":
 
             stop_time = None
-            truck1, truck2 = fleetOperations.Fleet.run_package_delivery(stop_time)
+            truck1, truck2, truck3 = fleetOperations.Fleet.run_package_delivery(stop_time)
 
             total_mileage = truck1.mileage + truck2.mileage #+ truck3.mileage
 
@@ -32,7 +32,7 @@ class CLI:
             print("Total Miles: " + str(round(total_mileage, 2)))
             print("Truck 1 mileage: " + str(round(truck1.mileage, 2)))
             print("Truck 2 mileage: " + str(round(truck2.mileage, 2)))
-            # print("Truck 3 mileage: " + str(round(truck3.mileage, 2)))
+            print("Truck 3 mileage: " + str(round(truck3.mileage, 2)))
 
             # Return to menu options
             self.menu()
@@ -53,7 +53,8 @@ class CLI:
             self.menu()
 
 
-        # Enter 3 to lookup a package after delivery
+        # TODO: also print truck number
+        # Enter 3 to look up a package after delivery
         if action == "3":
 
             stop_time = None
@@ -79,13 +80,15 @@ class CLI:
             stop_time = datetime.datetime.combine(datetime.datetime.today(), input_time)  # Add today's date
 
             # Run trucks until that time
-            truck1, truck2 = fleetOperations.Fleet.run_package_delivery(stop_time)
+            truck1, truck2, truck3 = fleetOperations.Fleet.run_package_delivery(stop_time)
 
 
             print("\n----------------------------------------------------")
             print("RESULT:")
+            print("Total delivered packages: " + str(truck1.counter + truck2.counter + truck3.counter))
             print("Truck 1 delivered " + str(truck1.counter) + " packages")
             print("Truck 2 delivered " + str(truck2.counter) + " packages")
+            print("Truck 3 delivered " + str(truck3.counter) + " packages")
             print("\n-- Packages by Truck --")
             print("------------------------")
             print("Truck 1:")
@@ -98,16 +101,16 @@ class CLI:
             print("--")
             config.package_hashmap.print_truck(truck2.original_package_list)
             print("------------------------\n")
-            # print("Truck 3: ")
-            # config.package_hashmap.print_truck(truck3.original_package_list)
-            # print("--\n")
+            print("Truck 3: ")
+            print("Total packages delivered: " + str(truck2.delivered_count))
+            print("--")
+            config.package_hashmap.print_truck(truck3.original_package_list)
+            print("------------------------")
 
             # Return to menu options
             self.menu()
 
             return
-
-
 
 
         #Enter 0 to exit program

@@ -13,7 +13,7 @@ userInterface.CLI.menu(UI)  # Run the UI
 ## FIXME
 # # TRUCK 3
 # # Load truck 3
-# truck3_packages = [6, 17, 22, 25, 26, 28, 31, 32]
+
 # #Instantiate truck 3
 # truck3 = truck.Truck(truck3_packages, start_address, returned_time)
 # # Update delivery status for packages to en route
