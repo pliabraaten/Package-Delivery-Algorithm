@@ -124,3 +124,8 @@ class CLI:
         #Enter 0 to exit program
         if action == "0":
             return
+
+
+        # If invalid input send back to menu
+        else:
+            self.menu()
