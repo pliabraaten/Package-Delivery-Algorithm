@@ -75,7 +75,7 @@ class Hashmap:
                 packages_list.append(package)  # Add packages to this list
 
         # Sort list by delivery_time
-        packages_list.sort(key=lambda x: x.delivery_time)
+        packages_list.sort(key=lambda x: (x.delivery_time is None, x.delivery_time))  # Put None values (packages en route) at the end
 
         # Print each package one at a time:
         for package in packages_list:

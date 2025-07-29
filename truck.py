@@ -30,15 +30,23 @@ class Truck:
 
         counter = 0  # Track number of packages delivered
 
-        #  Stop truck deliveries at a specific time if one was entered OR when truck is empty
-        while self.time < stop_time and len(self.packages) > 0:
+        # UPDATE STATUS FOR TRUCK 3 PACKAGES
+        if self.name == "truck3":
+            self.status_en_route(package_hashmap)
 
-            # UPDATE STATUS FOR TRUCK 3 PACKAGES
-            if self.name == "truck3":
-                self.status_en_route(package_hashmap)
+        #  Deliver packages until truck is empty or until stop time is reached
+        while True:
+
+            # END if no more packages are in truck
+            if len(self.packages) == 0:
+                break
 
             # DETERMINE NEXT PACKAGE
             next_package, distance, drive_time = self.pick_package(package_hashmap, address_dict, distance_list)
+
+            # END if move would take longer than stop_time
+            if self.time + timedelta(minutes=drive_time) > stop_time:
+                break
 
             # MOVE TRUCK
             self.move_truck(next_package, distance, drive_time)
@@ -66,7 +74,7 @@ class Truck:
     def move_truck(self, next_package, distance, drive_time):
 
         # Update time after driving to the next package address
-        self.time += timedelta(0, 0,0,0, drive_time, 0)
+        self.time += timedelta(minutes=drive_time)
 
         # Update current location
         self.current_address = next_package.address
