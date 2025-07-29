@@ -32,7 +32,7 @@ class NearestNeighbor:
                     next_package = package_object
 
         # After looping, return the package_object with the shortest distance
-        return next_package, distance
+        return next_package, shortest_dist
 
 
     @staticmethod
