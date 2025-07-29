@@ -13,7 +13,8 @@ class CLI:
         print("Enter 1 see total mileage of trucks after delivery")
         print("Enter 2 to query all packages after delivery")
         print("Enter 3 to look up a package after delivery")
-        print("Enter 4 to query packages at a specific time")
+        print("Enter 4 to query all packages at a specific time")
+        print("Enter 5 to look up package at a specific time")
         print("Enter 0 to exit program")
         print("--")
         action = input("Enter your option: ")
@@ -114,6 +115,30 @@ class CLI:
             # FIXME: delete
             print("\n LATE PACKAGES")
             config.package_hashmap.print_late()
+
+            # Return to menu options
+            self.menu()
+
+            return
+
+
+        # Enter 5 to look up package at a specific time
+        if action == "5":
+
+            id = int(input("Enter package id: "))
+
+            # Obtain stop time from user
+            input_time = input("Enter time in HHMM format: ")
+            input_time = datetime.datetime.strptime(input_time, '%H%M').time()  # Format input into time
+            stop_time = datetime.datetime.combine(datetime.datetime.today(), input_time)  # Add today's date
+
+            # Run trucks until that time
+            fleetOperations.Fleet.run_package_delivery(stop_time)
+
+            print("\n----------------------------------------------------")
+            print("RESULT:")
+            print("Package id: " + str(id))
+            config.package_hashmap.print_package(id)
 
             # Return to menu options
             self.menu()
