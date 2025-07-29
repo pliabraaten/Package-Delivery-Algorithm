@@ -112,7 +112,7 @@ class CLI:
             print("------------------------")
 
             # FIXME: delete
-            print("\n")
+            print("\n LATE PACKAGES")
             config.package_hashmap.print_late()
 
             # Return to menu options

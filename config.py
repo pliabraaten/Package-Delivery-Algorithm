@@ -18,4 +18,6 @@ start_address = '4001 South 700 East'
 
 # START TIME
 today = datetime.today()
-start_time = datetime(today.year, today.month, today.day, 8, 0, 0)
+start_time1 = datetime(today.year, today.month, today.day, 8, 0, 0)
+start_time2 = datetime(today.year, today.month, today.day, 9, 5, 0)
+

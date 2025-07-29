@@ -89,6 +89,6 @@ class Hashmap:
                     if package.deadline != 'EOD' and package.delivery_time is not None:  # Only print if package has a deadline
                         if package.deadline < package.delivery_time:
                             # FIXME: Only prints some attributes for testing - Print the whole package object?
-                            print(str(package.id) + " : " + str(package.deadline.strftime('%H:%M')) + " : " + str(package.delivery_time.strftime('%H:%M')))
-
+                            # print(str(package.id) + " : " + str(package.deadline.strftime('%H:%M')) + " : " + str(package.delivery_time.strftime('%H:%M')))
+                            print(package)
 
