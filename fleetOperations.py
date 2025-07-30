@@ -39,10 +39,6 @@ class Fleet:
     @staticmethod
     def run_trucks(truck1, truck2, package_hashmap, address_dict, distance_list, start_address, stop_time):
 
-        # # Update delivery status for delayed packages
-        # truck.Truck.check_delayed(truck1, package_hashmap)
-        # truck.Truck.check_delayed(truck2, package_hashmap)
-
         # If user didn't enter a specific time to check, set stop time to the last sec of the day
         if stop_time is None:
             day_end = datetime.datetime.strptime('235959', '%H%M%S').time()
