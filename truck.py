@@ -1,7 +1,9 @@
 from datetime import timedelta
 
 import algorithms
+import config
 import distance_data
+from config import start_time1, delayed_time
 
 
 class Truck:
@@ -16,12 +18,33 @@ class Truck:
         self.delivered_count = 0  # Count of packages delivered
 
 
-    def status_en_route(self, package_hashmap):
+    def check_delayed(self, package_hashmap):
 
         # Loop through all package ids in the truck
         for id in self.packages:
             package = package_hashmap.get(id)  # Retrieve package object
-            package.delivery_status = "En route"  # Update delivery_status
+            if id in config.delayed_packages:  # If package is delayed, update status
+                package.delivery_status = "Delayed"
+        return
+
+
+    def update_status(self, package_hashmap, stop_time):
+
+        ## fixme: currently at 8 = en route, 905 = en route, 915 = at the hub
+        ## should be 8 = delayed, 905 = at the hub, 915 = enroute
+        # After delayed packages arrive at hug, update their status
+        if stop_time <= delayed_time: # IF TIME IS BEFORE PACKAGE ARRIVES
+            for id in config.delayed_packages:  # Loop through delayed packages
+                package = package_hashmap.get(id)
+                package.delivery_status = "Delayed"
+        if config.delayed_time <= stop_time <= config.start_time2: # IF TIME IS AFTER PACKAGE ARRIVES BUT BEFORE TRUCK LEAVES
+            for id in config.delayed_packages:  # Loop through delayed packages
+                package = package_hashmap.get(id)
+                package.delivery_status = "At the HUB"
+        if config.start_time2 <= stop_time:  # IF TIME IS AFTER TRUCK LEAVES
+            for id in self.packages:  # Loop through ALL package ids in the truck
+                package = package_hashmap.get(id)
+                package.delivery_status = "En route"
 
         return True
 
@@ -30,9 +53,23 @@ class Truck:
 
         counter = 0  # Track number of packages delivered
 
-        # UPDATE STATUS FOR TRUCK 3 PACKAGES
-        if self.name == "truck3":
-            self.status_en_route(package_hashmap)
+        # Update package status based on timing
+        self.update_status(package_hashmap, stop_time)
+
+        # if stop is before delayed time -> delayed
+
+
+        # if stop time is after delayed time but before start time -> at hub
+        # if stop is after start time -> enroute
+
+        # # Update delivery status for packages to en route
+        # if start_time1
+        # truck.Truck.status_en_route(truck1, package_hashmap)
+        # truck.Truck.status_en_route(truck2, package_hashmap)
+
+        # # UPDATE STATUS FOR TRUCK 3 PACKAGES
+        # if self.name == "truck3":
+        #     self.status_en_route(package_hashmap)
 
         #  Deliver packages until truck is empty or until stop time is reached
         while True:

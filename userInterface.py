@@ -90,6 +90,7 @@ class CLI:
 
             print("\n----------------------------------------------------")
             print("RESULT:")
+            print("Time: " + str(stop_time))
             print("Total delivered packages: " + str(truck1.counter + truck2.counter + truck3.counter))
             print("Truck 1 delivered " + str(truck1.counter) + " packages")
             print("Truck 2 delivered " + str(truck2.counter) + " packages")
@@ -137,6 +138,7 @@ class CLI:
 
             print("\n----------------------------------------------------")
             print("RESULT:")
+            print("Time: " + str(stop_time))
             print("Package id: " + str(id))
             config.package_hashmap.print_package(id)
 
