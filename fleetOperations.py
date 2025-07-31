@@ -1,8 +1,6 @@
 import datetime
 import config
-import hashmap
 import truck
-
 
 
 class Fleet:

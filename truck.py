@@ -1,9 +1,7 @@
 from datetime import timedelta
-
 import algorithms
 import config
 import distance_data
-from config import start_time1, delayed_time
 
 
 class Truck:
@@ -38,7 +36,7 @@ class Truck:
 
             # DELAYED PACKAGES
             if id in config.delayed_packages:
-                if stop_time <= delayed_time:  # IF TIME IS BEFORE PACKAGE ARRIVES
+                if stop_time <= config.delayed_time:  # IF TIME IS BEFORE PACKAGE ARRIVES
                     package.delivery_status = "Delayed"
                 elif config.delayed_time < stop_time < self.start_time:  # IF TIME IS AFTER PACKAGE ARRIVES BUT BEFORE TRUCK LEAVES
                     package.delivery_status = "At the Hub"
