@@ -1,5 +1,4 @@
 import itertools
-from itertools import combinations
 
 import distance_data
 
