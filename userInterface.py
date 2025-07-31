@@ -102,8 +102,12 @@ class CLI:
 
                 # Obtain stop time from user
                 input_time = input("Enter time in HHMM format: ")
-                input_time = datetime.datetime.strptime(input_time, '%H%M').time()  # Format input into time
-                stop_time = datetime.datetime.combine(datetime.datetime.today(), input_time)  # Add today's date
+                try:
+                    input_time = datetime.datetime.strptime(input_time, '%H%M').time()  # Format input into time
+                    stop_time = datetime.datetime.combine(datetime.datetime.today(), input_time)  # Add today's date
+                    break
+                except ValueError:
+                    print("Invalid input. Please enter time as HHMM (ex: 1330 for 1:30 PM)")
 
                 # Run trucks until that time
                 config.package_hashmap = package_data.load_packages(config.package_file)  # Reload the hashmap
@@ -148,8 +152,12 @@ class CLI:
 
                 # Obtain stop time from user
                 input_time = input("Enter time in HHMM format: ")
-                input_time = datetime.datetime.strptime(input_time, '%H%M').time()  # Format input into time
-                stop_time = datetime.datetime.combine(datetime.datetime.today(), input_time)  # Add today's date
+                try:
+                    input_time = datetime.datetime.strptime(input_time, '%H%M').time()  # Format input into time
+                    stop_time = datetime.datetime.combine(datetime.datetime.today(), input_time)  # Add today's date
+                    break
+                except ValueError:
+                    print("Invalid input. Please enter time as HHMM (ex: 1330 for 1:30 PM)")
 
                 # Run trucks until that time
                 config.package_hashmap = package_data.load_packages(config.package_file)  # Reload the hashmap
