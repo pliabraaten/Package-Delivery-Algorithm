@@ -8,186 +8,174 @@ class CLI:
 
     def menu(self):
 
-        print("\n----------------------------------------------------")
-        print("This is the command-line interface")
-        print("----------------------------------------------------")
-        print("Enter 1 see total mileage of trucks after delivery")
-        print("Enter 2 to query all packages after delivery")
-        print("Enter 3 to look up a package after delivery")
-        print("Enter 4 to query all packages at a specific time")
-        print("Enter 5 to look up package at a specific time")
-        print("Enter 0 to exit program")
-        print("--")
-        action = input("Enter your option: ")
-
-
-        # Enter 1 see total mileage of trucks after delivery
-        if action == "1":
-
-            stop_time = None
-            package_data.load_packages(config.package_file)  # Reload the hashmap
-            truck1, truck2, truck3 = fleetOperations.Fleet.run_package_delivery(stop_time)
-
-            total_mileage = truck1.mileage + truck2.mileage #+ truck3.mileage
+        while True:
 
             print("\n----------------------------------------------------")
-            print("RESULT:")
-            print("Total Miles: " + str(round(total_mileage, 2)))
-            print("Truck 1 mileage: " + str(round(truck1.mileage, 2)))
-            print("Truck 2 mileage: " + str(round(truck2.mileage, 2)))
-            print("Truck 3 mileage: " + str(round(truck3.mileage, 2)))
-
-            # # TESTING FOR LATE PACKAGES
-            # print("\n")
-            # config.package_hashmap.print_late()
-
-            # Return to menu options
-            self.menu()
-
-
-        # Enter 2 to query all packages after delivery
-        if action == "2":
-
-            stop_time = None
-            config.package_hashmap = package_data.load_packages(config.package_file)  # Reload the hashmap
-            truck1, truck2, truck3 = fleetOperations.Fleet.run_package_delivery(stop_time)
-
-            print("\n----------------------------------------------------")
-            print("RESULT:")
-            print("Total delivered packages: " + str(truck1.delivered_count + truck2.delivered_count + truck3.delivered_count))
-            print("Truck 1 delivered " + str(truck1.delivered_count) + " packages")
-            print("Truck 2 delivered " + str(truck2.delivered_count) + " packages")
-            print("Truck 3 delivered " + str(truck3.delivered_count) + " packages")
-            print("\n-- Packages by Truck --")
-            print("------------------------")
-            print("Truck 1:")
-            print("Total packages delivered: " + str(truck1.delivered_count))
+            print("This is the command-line interface")
+            print("----------------------------------------------------")
+            print("Enter 1 see total mileage of trucks after delivery")
+            print("Enter 2 to query all packages after delivery")
+            print("Enter 3 to look up a package after delivery")
+            print("Enter 4 to query all packages at a specific time")
+            print("Enter 5 to look up package at a specific time")
+            print("Enter 0 to exit program")
             print("--")
-            config.package_hashmap.print_truck(truck1.original_package_list)
-            print("------------------------\n")
-            print("Truck 2:")
-            print("Total packages delivered: " + str(truck2.delivered_count))
-            print("--")
-            config.package_hashmap.print_truck(truck2.original_package_list)
-            print("------------------------\n")
-            print("Truck 3: ")
-            print("Total packages delivered: " + str(truck3.delivered_count))
-            print("--")
-            config.package_hashmap.print_truck(truck3.original_package_list)
-            print("------------------------")
-
-            # Return to menu options
-            self.menu()
+            action = input("Enter your option: ")
 
 
-        # Enter 3 to look up a package after delivery
-        if action == "3":
+            # Enter 1 see total mileage of trucks after delivery
+            if action == "1":
 
-            stop_time = None
-            config.package_hashmap = package_data.load_packages(config.package_file)  # Reload the hashmap
-            fleetOperations.Fleet.run_package_delivery(stop_time)
+                stop_time = None
+                package_data.load_packages(config.package_file)  # Reload the hashmap
+                truck1, truck2, truck3 = fleetOperations.Fleet.run_package_delivery(stop_time)
 
-            id = int(input("Enter package id: "))
+                total_mileage = truck1.mileage + truck2.mileage #+ truck3.mileage
 
-            print("\n----------------------------------------------------")
-            print("RESULT:")
-            print("Package id: " + str(id))
-            if id in config.truck1_packages:
-                print("Truck 1")
-            elif id in config.truck2_packages:
-                print("Truck 2")
-            elif id in config.truck3_packages:
-                print("Truck 3")
-            config.package_hashmap.print_package(id)
+                print("\n----------------------------------------------------")
+                print("RESULT:")
+                print("Total Miles: " + str(round(total_mileage, 2)))
+                print("Truck 1 mileage: " + str(round(truck1.mileage, 2)))
+                print("Truck 2 mileage: " + str(round(truck2.mileage, 2)))
+                print("Truck 3 mileage: " + str(round(truck3.mileage, 2)))
 
-            # Return to menu options
-            self.menu()
+                # # TESTING FOR LATE PACKAGES
+                # print("\n")
+                # config.package_hashmap.print_late()
 
 
-        # Enter 4 to query all packages at a specific time
-        if action == "4":
+            # Enter 2 to query all packages after delivery
+            elif action == "2":
 
-            # Obtain stop time from user
-            input_time = input("Enter time in HHMM format: ")
-            input_time = datetime.datetime.strptime(input_time, '%H%M').time()  # Format input into time
-            stop_time = datetime.datetime.combine(datetime.datetime.today(), input_time)  # Add today's date
+                stop_time = None
+                config.package_hashmap = package_data.load_packages(config.package_file)  # Reload the hashmap
+                truck1, truck2, truck3 = fleetOperations.Fleet.run_package_delivery(stop_time)
 
-            # Run trucks until that time
-            config.package_hashmap = package_data.load_packages(config.package_file)  # Reload the hashmap
-            truck1, truck2, truck3 = fleetOperations.Fleet.run_package_delivery(stop_time)
-
-            print("\n----------------------------------------------------")
-            print("RESULT:")
-            print("Time: " + str(stop_time))
-            print("Total delivered packages: " + str(truck1.delivered_count + truck2.delivered_count + truck3.delivered_count))
-            print("Truck 1 delivered " + str(truck1.delivered_count) + " packages")
-            print("Truck 2 delivered " + str(truck2.delivered_count) + " packages")
-            print("Truck 3 delivered " + str(truck3.delivered_count) + " packages")
-            print("\n-- Packages by Truck --")
-            print("------------------------")
-            print("Truck 1:")
-            print("Total packages delivered: " + str(truck1.delivered_count))
-            print("--")
-            config.package_hashmap.print_truck(truck1.original_package_list)
-            print("------------------------\n")
-            print("Truck 2:")
-            print("Total packages delivered: " + str(truck2.delivered_count))
-            print("--")
-            config.package_hashmap.print_truck(truck2.original_package_list)
-            print("------------------------\n")
-            print("Truck 3: ")
-            print("Total packages delivered: " + str(truck3.delivered_count))
-            print("--")
-            config.package_hashmap.print_truck(truck3.original_package_list)
-            print("------------------------")
-
-            # # TESTING FOR LATE PACKAGES
-            # print("\n LATE PACKAGES")
-            # config.package_hashmap.print_late()
-
-            # Return to menu options
-            self.menu()
-
-            return
+                print("\n----------------------------------------------------")
+                print("RESULT:")
+                print("Total delivered packages: " + str(truck1.delivered_count + truck2.delivered_count + truck3.delivered_count))
+                print("Truck 1 delivered " + str(truck1.delivered_count) + " packages")
+                print("Truck 2 delivered " + str(truck2.delivered_count) + " packages")
+                print("Truck 3 delivered " + str(truck3.delivered_count) + " packages")
+                print("\n-- Packages by Truck --")
+                print("------------------------")
+                print("Truck 1:")
+                print("Total packages delivered: " + str(truck1.delivered_count))
+                print("--")
+                config.package_hashmap.print_truck(truck1.original_package_list)
+                print("------------------------\n")
+                print("Truck 2:")
+                print("Total packages delivered: " + str(truck2.delivered_count))
+                print("--")
+                config.package_hashmap.print_truck(truck2.original_package_list)
+                print("------------------------\n")
+                print("Truck 3: ")
+                print("Total packages delivered: " + str(truck3.delivered_count))
+                print("--")
+                config.package_hashmap.print_truck(truck3.original_package_list)
+                print("------------------------")
 
 
-        # Enter 5 to look up package at a specific time
-        if action == "5":
+            # Enter 3 to look up a package after delivery
+            elif action == "3":
 
-            id = int(input("Enter package id: "))
+                stop_time = None
+                config.package_hashmap = package_data.load_packages(config.package_file)  # Reload the hashmap
+                fleetOperations.Fleet.run_package_delivery(stop_time)
 
-            # Obtain stop time from user
-            input_time = input("Enter time in HHMM format: ")
-            input_time = datetime.datetime.strptime(input_time, '%H%M').time()  # Format input into time
-            stop_time = datetime.datetime.combine(datetime.datetime.today(), input_time)  # Add today's date
+                id = int(input("Enter package id: "))
 
-            # Run trucks until that time
-            config.package_hashmap = package_data.load_packages(config.package_file)  # Reload the hashmap
-            fleetOperations.Fleet.run_package_delivery(stop_time)
-
-            print("\n----------------------------------------------------")
-            print("RESULT:")
-            print("Time: " + str(stop_time))
-            print("Package id: " + str(id))
-            if id in config.truck1_packages:
-                print("Truck 1")
-            elif id in config.truck2_packages:
-                print("Truck 2")
-            elif id in config.truck3_packages:
-                print("Truck 3")
-            config.package_hashmap.print_package(id)
-
-            # Return to menu options
-            self.menu()
-
-            return
+                print("\n----------------------------------------------------")
+                print("RESULT:")
+                print("Package id: " + str(id))
+                if id in config.truck1_packages:
+                    print("Truck 1")
+                elif id in config.truck2_packages:
+                    print("Truck 2")
+                elif id in config.truck3_packages:
+                    print("Truck 3")
+                config.package_hashmap.print_package(id)
 
 
-        #Enter 0 to exit program
-        if action == "0":
-            return
+            # Enter 4 to query all packages at a specific time
+            elif action == "4":
+
+                # Obtain stop time from user
+                input_time = input("Enter time in HHMM format: ")
+                input_time = datetime.datetime.strptime(input_time, '%H%M').time()  # Format input into time
+                stop_time = datetime.datetime.combine(datetime.datetime.today(), input_time)  # Add today's date
+
+                # Run trucks until that time
+                config.package_hashmap = package_data.load_packages(config.package_file)  # Reload the hashmap
+                truck1, truck2, truck3 = fleetOperations.Fleet.run_package_delivery(stop_time)
+
+                print("\n----------------------------------------------------")
+                print("RESULT:")
+                print("Time: " + str(stop_time))
+                print("Total delivered packages: " + str(truck1.delivered_count + truck2.delivered_count + truck3.delivered_count))
+                print("Truck 1 delivered " + str(truck1.delivered_count) + " packages")
+                print("Truck 2 delivered " + str(truck2.delivered_count) + " packages")
+                print("Truck 3 delivered " + str(truck3.delivered_count) + " packages")
+                print("\n-- Packages by Truck --")
+                print("------------------------")
+                print("Truck 1:")
+                print("Total packages delivered: " + str(truck1.delivered_count))
+                print("--")
+                config.package_hashmap.print_truck(truck1.original_package_list)
+                print("------------------------\n")
+                print("Truck 2:")
+                print("Total packages delivered: " + str(truck2.delivered_count))
+                print("--")
+                config.package_hashmap.print_truck(truck2.original_package_list)
+                print("------------------------\n")
+                print("Truck 3: ")
+                print("Total packages delivered: " + str(truck3.delivered_count))
+                print("--")
+                config.package_hashmap.print_truck(truck3.original_package_list)
+                print("------------------------")
+
+                # # TESTING FOR LATE PACKAGES
+                # print("\n LATE PACKAGES")
+                # config.package_hashmap.print_late()
+
+                return
 
 
-        # If invalid input send back to menu
-        else:
-            self.menu()
+            # Enter 5 to look up package at a specific time
+            elif action == "5":
+
+                id = int(input("Enter package id: "))
+
+                # Obtain stop time from user
+                input_time = input("Enter time in HHMM format: ")
+                input_time = datetime.datetime.strptime(input_time, '%H%M').time()  # Format input into time
+                stop_time = datetime.datetime.combine(datetime.datetime.today(), input_time)  # Add today's date
+
+                # Run trucks until that time
+                config.package_hashmap = package_data.load_packages(config.package_file)  # Reload the hashmap
+                fleetOperations.Fleet.run_package_delivery(stop_time)
+
+                print("\n----------------------------------------------------")
+                print("RESULT:")
+                print("Time: " + str(stop_time))
+                print("Package id: " + str(id))
+                if id in config.truck1_packages:
+                    print("Truck 1")
+                elif id in config.truck2_packages:
+                    print("Truck 2")
+                elif id in config.truck3_packages:
+                    print("Truck 3")
+                config.package_hashmap.print_package(id)
+
+                return
+
+
+            #Enter 0 to exit program
+            elif action == "0":
+                print("Thanks!")
+                break
+
+
+            # If invalid input send back to menu
+            else:
+                print("Invalid input.")
