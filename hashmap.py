@@ -54,7 +54,10 @@ class Hashmap:
     def print_package(self, key):
 
         package = self.get(key)
-        print(package)
+        print("ID:", package.id)
+        print("Deadline:", package.deadline)
+        print("Delivery Status:", package.delivery_status)
+        print("Delivery Time:", package.delivery_time)
 
 
     # Print entire hashmap
