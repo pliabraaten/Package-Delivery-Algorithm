@@ -26,10 +26,6 @@ def load_packages(file_path):
                     deadline_time = datetime.strptime(new_package.deadline, '%H:%M').time()  # Format into time
                     new_package.deadline = datetime.combine(datetime.today(), deadline_time)  # Add today's date
 
-                # IF PACKAGE IS ONE OF THE DELAYED ONES, UPDATE DELIVERY STATUS:
-                # if new_package.id in config.delayed_packages:
-                #     new_package.delivery_status = "Delayed"
-
                 # HASH and ADD NEW PACKAGE
                 package_hashmap.put(new_package.id, new_package)
 

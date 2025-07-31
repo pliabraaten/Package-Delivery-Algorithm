@@ -13,7 +13,6 @@ class Fleet:
         truck1, truck2 = Fleet.load_trucks(config.start_address, config.start_time1, config.start_time2)
 
         # RUN TRUCKS
-        ## FIXME: DON'T NEED TO RETURN COUNTER, TRUCK OBJECT HAS DELIVERED_COUNT ATTRIBUTE ALREADY
         t1_time_returned = Fleet.run_trucks(truck1, truck2, config.package_hashmap, config.address_dict, config.distance_list, config.start_address, stop_time)
 
         # LOAD AND RUN 3RD TRUCK

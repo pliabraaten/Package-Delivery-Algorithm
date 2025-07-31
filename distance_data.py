@@ -31,7 +31,6 @@ def load_addresses(file_path):
         return address_dict, distance_list
 
 
-
 # Function for calculating distance between two address
 def get_distance(address1, address2, address_dict, distance_list):
         address_index1 = address_dict[address1]

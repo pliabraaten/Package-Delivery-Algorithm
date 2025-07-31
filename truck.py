@@ -31,11 +31,10 @@ class Truck:
 
     def update_status(self, package_hashmap, stop_time):
 
+        # UPDATE STATUS RELATIVE TO TIME ENTERED BY USER (STOP_TIME)
         # Loop through all packages in the truck and return package objects
         for id in self.packages:
             package = package_hashmap.get(id)
-
-        # UPDATE STATUS RELATIVE TO TIME ENTERED BY USER (STOP_TIME)
 
             # DELAYED PACKAGES
             if id in config.delayed_packages:
@@ -53,8 +52,6 @@ class Truck:
 
 
     def deliver_packages(self, package_hashmap, address_dict, distance_list, stop_time):
-
-        # counter = 0  # Track number of packages delivered
 
         # Update package status based on timing
         self.update_status(package_hashmap, stop_time)
@@ -78,8 +75,6 @@ class Truck:
 
             # DELIVER PACKAGE
             self.drop_package(next_package, distance)
-
-            # counter += 1
 
         return self.delivered_count
 
