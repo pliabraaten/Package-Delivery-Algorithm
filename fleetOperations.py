@@ -26,8 +26,8 @@ class Fleet:
     def load_trucks(start_address, start_time1, start_time2):
 
         # Load truck with packages
-        truck1_packages = [15, 1, 13, 14, 16, 20, 29, 30, 31, 37, 40, 34, 24]
-        truck2_packages = [6, 25, 3, 18, 28, 32, 36, 38, 2, 33, 12]
+        truck1_packages = config.truck1_packages
+        truck2_packages = config.truck2_packages
 
         # Instantiate a truck packages
         truck1 = truck.Truck(truck1_packages, start_address, start_time1, name="truck1")
@@ -45,8 +45,8 @@ class Fleet:
             stop_time = datetime.datetime.combine(datetime.datetime.today(), day_end)
 
         # DELIVER PACKAGES
-        truck1.counter = truck1.deliver_packages(package_hashmap, address_dict, distance_list, stop_time)
-        truck2.counter = truck2.deliver_packages(package_hashmap, address_dict, distance_list, stop_time)
+        truck1.delivered_count = truck1.deliver_packages(package_hashmap, address_dict, distance_list, stop_time)
+        truck2.delivered_count = truck2.deliver_packages(package_hashmap, address_dict, distance_list, stop_time)
 
         # TRUCK 1 RETURNS
         t1_time_returned = truck1.return_truck(address_dict, distance_list, start_address)
@@ -58,7 +58,7 @@ class Fleet:
     def run_3rd_truck(t1_time_returned, stop_time):
 
         # LOAD
-        truck3_packages = [4, 5, 7, 8, 9, 10, 11, 17, 19, 21, 22, 23, 26, 27, 35, 39]
+        truck3_packages = config.truck3_packages
 
         # INSTANTIATE and SET TRUCK 3'S START TIME TO TRUCK 1'S ENDTIME
         truck3 = truck.Truck(truck3_packages, config.start_address, t1_time_returned, name="truck3")
@@ -69,6 +69,6 @@ class Fleet:
             stop_time = datetime.datetime.combine(datetime.datetime.today(), day_end)
 
         # DELIVER PACKAGES
-        truck3.counter = truck3.deliver_packages(config.package_hashmap, config.address_dict, config.distance_list, stop_time)
+        truck3.delivered_count = truck3.deliver_packages(config.package_hashmap, config.address_dict, config.distance_list, stop_time)
 
         return truck3

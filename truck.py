@@ -49,28 +49,12 @@ class Truck:
             else:
                 if self.start_time <= stop_time:  # IF TIME IS AFTER TRUCK LEAVES
                     package.delivery_status = "En route"
-
-
-
-        # if stop_time <= delayed_time:
-        #     for id in config.delayed_packages:  # Loop through delayed packages
-        #         package = package_hashmap.get(id)
-        #         package.delivery_status = "Delayed"
-        # if config.delayed_time <= stop_time <= config.start_time2:
-        #     for id in config.delayed_packages:  # Loop through delayed packages
-        #         package = package_hashmap.get(id)
-        #         package.delivery_status = "At the HUB"
-        # if config.start_time2 <= stop_time:
-        #     for id in self.packages:  # Loop through ALL package ids in the truck
-        #         package = package_hashmap.get(id)
-        #         package.delivery_status = "En route"
-
         return True
 
 
     def deliver_packages(self, package_hashmap, address_dict, distance_list, stop_time):
 
-        counter = 0  # Track number of packages delivered
+        # counter = 0  # Track number of packages delivered
 
         # Update package status based on timing
         self.update_status(package_hashmap, stop_time)
@@ -95,9 +79,9 @@ class Truck:
             # DELIVER PACKAGE
             self.drop_package(next_package, distance)
 
-            counter += 1
+            # counter += 1
 
-        return counter
+        return self.delivered_count
 
 
     def pick_package(self, package_hashmap, address_dict, distance_list):
@@ -155,4 +139,3 @@ class Truck:
         self.mileage += distance
 
         return self.time
-
