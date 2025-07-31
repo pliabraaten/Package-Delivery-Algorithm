@@ -1,6 +1,7 @@
 import datetime
 import config
 import fleetOperations
+import package_data
 
 
 class CLI:
@@ -24,6 +25,7 @@ class CLI:
         if action == "1":
 
             stop_time = None
+            package_data.load_packages(config.package_file)  # Reload the hashmap
             truck1, truck2, truck3 = fleetOperations.Fleet.run_package_delivery(stop_time)
 
             total_mileage = truck1.mileage + truck2.mileage #+ truck3.mileage
@@ -35,9 +37,9 @@ class CLI:
             print("Truck 2 mileage: " + str(round(truck2.mileage, 2)))
             print("Truck 3 mileage: " + str(round(truck3.mileage, 2)))
 
-            # TESTING FOR LATE PACKAGES
-            print("\n")
-            config.package_hashmap.print_late()
+            # # TESTING FOR LATE PACKAGES
+            # print("\n")
+            # config.package_hashmap.print_late()
 
             # Return to menu options
             self.menu()
@@ -47,6 +49,7 @@ class CLI:
         if action == "2":
 
             stop_time = None
+            config.package_hashmap = package_data.load_packages(config.package_file)  # Reload the hashmap
             truck1, truck2, truck3 = fleetOperations.Fleet.run_package_delivery(stop_time)
 
             print("\n----------------------------------------------------")
@@ -81,6 +84,7 @@ class CLI:
         if action == "3":
 
             stop_time = None
+            config.package_hashmap = package_data.load_packages(config.package_file)  # Reload the hashmap
             fleetOperations.Fleet.run_package_delivery(stop_time)
 
             id = int(input("Enter package id: "))
@@ -109,6 +113,7 @@ class CLI:
             stop_time = datetime.datetime.combine(datetime.datetime.today(), input_time)  # Add today's date
 
             # Run trucks until that time
+            config.package_hashmap = package_data.load_packages(config.package_file)  # Reload the hashmap
             truck1, truck2, truck3 = fleetOperations.Fleet.run_package_delivery(stop_time)
 
             print("\n----------------------------------------------------")
@@ -136,9 +141,9 @@ class CLI:
             config.package_hashmap.print_truck(truck3.original_package_list)
             print("------------------------")
 
-            # TESTING FOR LATE PACKAGES
-            print("\n LATE PACKAGES")
-            config.package_hashmap.print_late()
+            # # TESTING FOR LATE PACKAGES
+            # print("\n LATE PACKAGES")
+            # config.package_hashmap.print_late()
 
             # Return to menu options
             self.menu()
@@ -157,6 +162,7 @@ class CLI:
             stop_time = datetime.datetime.combine(datetime.datetime.today(), input_time)  # Add today's date
 
             # Run trucks until that time
+            config.package_hashmap = package_data.load_packages(config.package_file)  # Reload the hashmap
             fleetOperations.Fleet.run_package_delivery(stop_time)
 
             print("\n----------------------------------------------------")

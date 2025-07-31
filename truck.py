@@ -116,7 +116,7 @@ class Truck:
         self.delivered_count += 1
 
 
-    def return_truck(self, address_dict, distance_list, start_address):
+    def return_truck(self, address_dict, distance_list, start_address, stop_time):
 
         # Calculate distance from last package location back to HUB
         distance = distance_data.get_distance(self.current_address, start_address, address_dict, distance_list)
@@ -124,8 +124,12 @@ class Truck:
         # Calculate time back to HUB
         return_time = algorithms.NearestNeighbor.calculate_time(distance)
 
-        # Update time after driving to the next package address
-        self.time += timedelta(0, 0,0,0, return_time, 0)
+        # END if returning be later than stop_time
+        if self.time + timedelta(minutes=return_time) > stop_time:
+            return None
+
+        # # Update time after driving to the next package address
+        # self.time += timedelta(0, 0,0,0, return_time, 0)
 
         # Update current location
         self.current_address = start_address

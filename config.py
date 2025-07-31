@@ -19,7 +19,7 @@ start_time2 = datetime(today.year, today.month, today.day, 9, 10, 0)
 delayed_packages = [28, 6, 32, 25]
 delayed_time = datetime(today.year, today.month, today.day, 9, 5, 0)
 
-# LOAD PACKAGES INTO HASHMAP
+# # LOAD PACKAGES INTO HASHMAP
 package_hashmap = package_data.load_packages(package_file)
 
 # DESIGNATE PACKAGES INTO TRUCKS
@@ -31,4 +31,10 @@ truck3_packages = [4, 5, 7, 8, 9, 10, 11, 17, 19, 21, 22, 23, 26, 27, 35, 39]
 start_address = '4001 South 700 East'
 
 
-
+# INCORRECT ADDRESS
+packages_wrongAddress = [9]
+time_corrected = datetime(today.year, today.month, today.day, 10, 20, 0)
+corrected_address = "410 S State St"
+corrected_city = "Salt Lake City"
+corrected_state = "UT"
+corrected_zip = "84111"

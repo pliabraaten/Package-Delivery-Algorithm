@@ -1,5 +1,6 @@
 import datetime
 import config
+import hashmap
 import truck
 
 
@@ -48,7 +49,7 @@ class Fleet:
         truck2.delivered_count = truck2.deliver_packages(package_hashmap, address_dict, distance_list, stop_time)
 
         # TRUCK 1 RETURNS
-        t1_time_returned = truck1.return_truck(address_dict, distance_list, start_address)
+        t1_time_returned = truck1.return_truck(address_dict, distance_list, start_address, stop_time)
 
         return t1_time_returned
 
@@ -67,7 +68,21 @@ class Fleet:
             day_end = datetime.datetime.strptime('235959', '%H%M%S').time()
             stop_time = datetime.datetime.combine(datetime.datetime.today(), day_end)
 
+        # UPDATE PACKAGE WITH INCORRECT ADDRESS
+        if stop_time > config.time_corrected:
+            for id in config.packages_wrongAddress:
+                package = config.package_hashmap.get(id)
+                package.address = config.corrected_address
+                package.city = config.corrected_city
+                package.state = config.corrected_state
+                package.zip = config.corrected_zip
+
+        # If Truck 1 didn't return, END
+        if t1_time_returned is None:
+            return truck3
+
         # DELIVER PACKAGES
-        truck3.delivered_count = truck3.deliver_packages(config.package_hashmap, config.address_dict, config.distance_list, stop_time)
+        if stop_time > t1_time_returned:  # Only if truck 1 has returned
+            truck3.delivered_count = truck3.deliver_packages(config.package_hashmap, config.address_dict, config.distance_list, stop_time)
 
         return truck3
