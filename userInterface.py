@@ -101,13 +101,15 @@ class CLI:
             elif action == "4":
 
                 # Obtain stop time from user
-                input_time = input("Enter time in HHMM format: ")
-                try:
-                    input_time = datetime.datetime.strptime(input_time, '%H%M').time()  # Format input into time
+                while True:
+                    input_time = input("Enter time in HHMM format: ")
+                    try:
+                        input_time = datetime.datetime.strptime(input_time, '%H%M').time()  # Format input into time
+                    except ValueError:
+                        print("Invalid input. Please enter time as HHMM (ex: 1330 for 1:30 PM)")
+                        continue
                     stop_time = datetime.datetime.combine(datetime.datetime.today(), input_time)  # Add today's date
                     break
-                except ValueError:
-                    print("Invalid input. Please enter time as HHMM (ex: 1330 for 1:30 PM)")
 
                 # Run trucks until that time
                 config.package_hashmap = package_data.load_packages(config.package_file)  # Reload the hashmap
@@ -142,8 +144,6 @@ class CLI:
                 # print("\n LATE PACKAGES")
                 # config.package_hashmap.print_late()
 
-                return
-
 
             # Enter 5 to look up package at a specific time
             elif action == "5":
@@ -151,13 +151,15 @@ class CLI:
                 id = int(input("Enter package id: "))
 
                 # Obtain stop time from user
-                input_time = input("Enter time in HHMM format: ")
-                try:
-                    input_time = datetime.datetime.strptime(input_time, '%H%M').time()  # Format input into time
+                while True:
+                    input_time = input("Enter time in HHMM format: ")
+                    try:
+                        input_time = datetime.datetime.strptime(input_time, '%H%M').time()  # Format input into time
+                    except ValueError:
+                        print("Invalid input. Please enter time as HHMM (ex: 1330 for 1:30 PM)")
+                        continue
                     stop_time = datetime.datetime.combine(datetime.datetime.today(), input_time)  # Add today's date
                     break
-                except ValueError:
-                    print("Invalid input. Please enter time as HHMM (ex: 1330 for 1:30 PM)")
 
                 # Run trucks until that time
                 config.package_hashmap = package_data.load_packages(config.package_file)  # Reload the hashmap
@@ -174,8 +176,6 @@ class CLI:
                 elif id in config.truck3_packages:
                     print("Truck 3")
                 config.package_hashmap.print_package(id)
-
-                return
 
 
             #Enter 0 to exit program
