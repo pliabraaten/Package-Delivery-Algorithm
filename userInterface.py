@@ -75,6 +75,10 @@ class CLI:
                 config.package_hashmap.print_truck(truck3.original_package_list)
                 print("------------------------")
 
+                # TESTING FOR LATE PACKAGES
+                print("\n LATE PACKAGES")
+                config.package_hashmap.print_late()
+
 
             # Enter 3 to look up a package after delivery
             elif action == "3":
